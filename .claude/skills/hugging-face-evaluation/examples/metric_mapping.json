@@ -1,0 +1,118 @@
+{
+  "_comment": "Maps benchmark names to Hub dataset IDs for .eval_results/ format. Dataset IDs must be registered Benchmarks on HuggingFace Hub.",
+  "MMLU": {
+    "dataset_id": "cais/mmlu",
+    "task_id": "default",
+    "aliases": ["mmlu", "massive_multitask_language_understanding"]
+  },
+  "MMLU-Pro": {
+    "dataset_id": "TIGER-Lab/MMLU-Pro",
+    "task_id": "default",
+    "aliases": ["mmlu_pro", "mmlu-pro"]
+  },
+  "MMLU-Redux": {
+    "dataset_id": "edinburgh-dawg/mmlu-redux",
+    "task_id": "default",
+    "aliases": ["mmlu_redux", "mmlu-redux"]
+  },
+  "HumanEval": {
+    "dataset_id": "openai/openai_humaneval",
+    "task_id": "default",
+    "aliases": ["humaneval", "human_eval"]
+  },
+  "GSM8K": {
+    "dataset_id": "openai/gsm8k",
+    "task_id": "default",
+    "aliases": ["gsm8k", "gsm_8k", "grade_school_math"]
+  },
+  "HellaSwag": {
+    "dataset_id": "Rowan/hellaswag",
+    "task_id": "default",
+    "aliases": ["hellaswag", "hella_swag"]
+  },
+  "ARC-Challenge": {
+    "dataset_id": "allenai/ai2_arc",
+    "task_id": "ARC-Challenge",
+    "aliases": ["arc_challenge", "arc-c", "arc_c"]
+  },
+  "ARC-Easy": {
+    "dataset_id": "allenai/ai2_arc",
+    "task_id": "ARC-Easy",
+    "aliases": ["arc_easy", "arc-e", "arc_e"]
+  },
+  "Winogrande": {
+    "dataset_id": "allenai/winogrande",
+    "task_id": "default",
+    "aliases": ["winogrande", "wino_grande"]
+  },
+  "TruthfulQA": {
+    "dataset_id": "truthfulqa/truthful_qa",
+    "task_id": "default",
+    "aliases": ["truthfulqa", "truthful_qa"]
+  },
+  "GPQA": {
+    "dataset_id": "Idavidrein/gpqa",
+    "task_id": "gpqa_diamond",
+    "aliases": ["gpqa", "gpqa_diamond"]
+  },
+  "DROP": {
+    "dataset_id": "ucinlp/drop",
+    "task_id": "default",
+    "aliases": ["drop"]
+  },
+  "BBH": {
+    "dataset_id": "lukaemon/bbh",
+    "task_id": "default",
+    "aliases": ["bbh", "big_bench_hard"]
+  },
+  "MATH": {
+    "dataset_id": "lighteval/MATH",
+    "task_id": "default",
+    "aliases": ["math"]
+  },
+  "HLE": {
+    "dataset_id": "cais/hle",
+    "task_id": "default",
+    "aliases": ["hle", "human_level_evaluation", "hle_text_only", "hle_(text_only)"]
+  },
+  "AIME25": {
+    "dataset_id": "OpenEvals/aime_2025",
+    "task_id": "default",
+    "aliases": ["aime25", "aime_25", "aime_2025"]
+  },
+  "SWE-bench": {
+    "dataset_id": "princeton-nlp/SWE-bench_Verified",
+    "task_id": "default",
+    "aliases": ["swe_bench", "swe-bench", "swe_bench_verified", "swe-bench_verified"]
+  },
+  "LiveCodeBench": {
+    "dataset_id": "livecodebench/livecodebench",
+    "task_id": "default",
+    "aliases": ["livecodebench", "live_code_bench", "livecodebenchv6"]
+  },
+  "SimpleQA": {
+    "dataset_id": "OpenEvals/SimpleQA",
+    "task_id": "default",
+    "aliases": ["simpleqa", "simple_qa"]
+  },
+  "AIME": {
+    "dataset_id": "OpenEvals/aime_24",
+    "task_id": "default",
+    "aliases": ["aime", "aime_24", "aime24"]
+  },
+  "IFEval": {
+    "dataset_id": "google/IFEval",
+    "task_id": "default",
+    "aliases": ["ifeval", "if_eval"]
+  },
+  "MBPP": {
+    "dataset_id": "google-research-datasets/mbpp",
+    "task_id": "default",
+    "aliases": ["mbpp"]
+  },
+  "MuSR": {
+    "dataset_id": "OpenEvals/MuSR",
+    "task_id": "default",
+    "aliases": ["musr"]
+  }
+}

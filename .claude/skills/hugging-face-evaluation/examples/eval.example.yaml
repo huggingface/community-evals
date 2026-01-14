@@ -1,0 +1,11 @@
+- dataset:
+    id: cais/hle                  # Required. Hub dataset ID (must be a Benchmark)
+    task_id: default              # Optional, in case there are multiple tasks or leaderboards for this dataset.
+    revision: <hash>              # Optional. Dataset revision hash
+  value: 20.90                    # Required. Metric value
+  verifyToken: <token>            # Optional. Cryptographic proof of auditable evaluation
+  date: "2025-01-15"              # Optional. ISO-8601 date or datetime (defaults to git commit time)
+  source:                         # Optional. Attribution for this result, for instance a repo containing output traces or a Paper
+    url: https://huggingface.co/spaces/SaylorTwift/smollm3-mmlu-pro  # Required if source provided
+    name: Eval traces             # Optional. Display name
+    user: SaylorTwift             # Optional. HF username/org
