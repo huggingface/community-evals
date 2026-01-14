@@ -6,6 +6,7 @@
 #     "python-dotenv>=1.2.1",
 #     "pyyaml>=6.0.3",
 #     "requests>=2.32.5",
+#     "pypdf>=4.0.0",
 # ]
 # ///
 
@@ -95,6 +96,17 @@ def require_hf_api():
             "Install with `uv add huggingface_hub` or `pip install huggingface-hub`."
         ) from exc
     return HfApi
+
+
+def require_pypdf():
+    try:
+        from pypdf import PdfReader  # type: ignore
+    except ModuleNotFoundError as exc:
+        raise ModuleNotFoundError(
+            "pypdf is required for PDF extraction. "
+            "Install with `uv add pypdf` or `pip install pypdf`."
+        ) from exc
+    return PdfReader
 
 
 # ============================================================================
@@ -1207,6 +1219,350 @@ def list_open_prs(repo_id: str) -> None:
 
 
 # ============================================================================
+# Method 3: Extract from HuggingFace Papers
+# ============================================================================
+
+
+def get_papers_for_model(repo_id: str) -> List[Dict[str, Any]]:
+    """
+    Fetch papers linked to a model from HuggingFace.
+
+    Uses the HF Hub API to get associated papers for a model repository.
+
+    Args:
+        repo_id: HuggingFace repository ID (e.g., "meta-llama/Llama-3.1-8B")
+
+    Returns:
+        List of paper dictionaries with id, title, url, and arxiv_id
+    """
+    requests = require_requests()
+    load_env()
+
+    hf_token = os.getenv("HF_TOKEN")
+    headers = {}
+    if hf_token:
+        headers["Authorization"] = f"Bearer {hf_token}"
+
+    # First get model info to find linked papers
+    url = f"https://huggingface.co/api/models/{repo_id}"
+
+    try:
+        response = requests.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
+        model_data = response.json()
+
+        papers = []
+
+        # Check for paper references in model data
+        # Papers can be linked via arxiv_id in model card or paper_info
+        arxiv_ids = set()
+
+        # Check tags for arxiv references (format: "arxiv:2204.05149")
+        tags = model_data.get("tags", [])
+        for tag in tags:
+            if isinstance(tag, str) and tag.startswith("arxiv:"):
+                arxiv_id = tag.replace("arxiv:", "")
+                arxiv_ids.add(arxiv_id)
+
+        # Check cardData for arxiv references
+        card_data = model_data.get("cardData", {})
+        if card_data:
+            # Check for arxiv field
+            arxiv = card_data.get("arxiv")
+            if arxiv:
+                if isinstance(arxiv, str):
+                    arxiv_ids.add(arxiv)
+                elif isinstance(arxiv, list):
+                    arxiv_ids.update(arxiv)
+
+        # Check for paper_info field
+        paper_info = model_data.get("paperInfo", [])
+        if paper_info:
+            for paper in paper_info:
+                arxiv_id = paper.get("arxivId") or paper.get("id")
+                if arxiv_id:
+                    arxiv_ids.add(arxiv_id)
+                    papers.append({
+                        "id": arxiv_id,
+                        "title": paper.get("title", ""),
+                        "url": f"https://arxiv.org/abs/{arxiv_id}",
+                        "arxiv_id": arxiv_id,
+                    })
+
+        # Also check the HF papers API for this model
+        papers_url = f"https://huggingface.co/api/papers?model={repo_id}"
+        try:
+            papers_response = requests.get(papers_url, headers=headers, timeout=30)
+            if papers_response.status_code == 200:
+                papers_data = papers_response.json()
+                for paper in papers_data:
+                    arxiv_id = paper.get("id", "")
+                    if arxiv_id and arxiv_id not in arxiv_ids:
+                        arxiv_ids.add(arxiv_id)
+                        papers.append({
+                            "id": arxiv_id,
+                            "title": paper.get("title", ""),
+                            "url": f"https://arxiv.org/abs/{arxiv_id}",
+                            "arxiv_id": arxiv_id,
+                        })
+        except requests.RequestException:
+            pass  # Papers API may not be available
+
+        # Build paper list from remaining arxiv_ids
+        for arxiv_id in arxiv_ids:
+            if not any(p["arxiv_id"] == arxiv_id for p in papers):
+                papers.append({
+                    "id": arxiv_id,
+                    "title": "",
+                    "url": f"https://arxiv.org/abs/{arxiv_id}",
+                    "arxiv_id": arxiv_id,
+                })
+
+        return papers
+
+    except requests.RequestException as e:
+        print(f"Error fetching papers for {repo_id}: {e}")
+        return []
+
+
+def extract_text_from_pdf(pdf_url: str) -> Optional[str]:
+    """
+    Download a PDF and extract its text content.
+
+    Args:
+        pdf_url: URL to the PDF file (arxiv, HF, etc.)
+
+    Returns:
+        Extracted text content, or None if extraction fails
+    """
+    requests = require_requests()
+    PdfReader = require_pypdf()
+    import io
+
+    # Convert arxiv abstract URL to PDF URL if needed
+    if "arxiv.org/abs/" in pdf_url:
+        pdf_url = pdf_url.replace("/abs/", "/pdf/") + ".pdf"
+
+    try:
+        # Download PDF
+        response = requests.get(pdf_url, timeout=60, allow_redirects=True)
+        response.raise_for_status()
+
+        # Extract text using pypdf
+        pdf_file = io.BytesIO(response.content)
+        reader = PdfReader(pdf_file)
+
+        text_parts = []
+        for page in reader.pages:
+            text = page.extract_text()
+            if text:
+                text_parts.append(text)
+
+        full_text = "\n\n".join(text_parts)
+
+        # Truncate if too long (LLMs have context limits)
+        max_chars = 100000  # ~25k tokens
+        if len(full_text) > max_chars:
+            full_text = full_text[:max_chars] + "\n\n[... truncated ...]"
+
+        return full_text
+
+    except Exception as e:
+        print(f"Error extracting text from PDF {pdf_url}: {e}")
+        return None
+
+
+def extract_scores_with_llm(
+    paper_text: str,
+    model_name: str,
+    benchmark_name: Optional[str] = None,
+) -> List[Dict[str, Any]]:
+    """
+    Use Claude Code to extract benchmark scores from paper text.
+
+    Args:
+        paper_text: Extracted text content from the paper
+        model_name: Name of the model to find scores for
+        benchmark_name: Optional specific benchmark to look for
+
+    Returns:
+        List of metric dictionaries with name and value
+    """
+    import subprocess
+    import json as json_mod
+
+    # Build the prompt for Claude
+    if benchmark_name:
+        prompt = f"""Extract the {benchmark_name} benchmark score for the model "{model_name}" from this paper.
+
+Return ONLY a JSON array with the score, like: [{{"name": "{benchmark_name}", "value": 84.5}}]
+
+If the score is not found, return an empty array: []
+
+Paper text:
+{paper_text[:50000]}"""
+    else:
+        prompt = f"""Extract all benchmark evaluation scores for the model "{model_name}" from this paper.
+
+Look for common benchmarks like: MMLU, GPQA, HumanEval, GSM8K, MATH, HLE, SimpleQA, ARC, HellaSwag, TruthfulQA, etc.
+
+Return ONLY a JSON array with the scores found, like:
+[{{"name": "MMLU", "value": 84.5}}, {{"name": "GPQA", "value": 72.3}}]
+
+If no scores are found, return an empty array: []
+
+Important:
+- Only include scores that are clearly attributed to this specific model
+- Use the exact benchmark names as they appear in the paper
+- Values should be numeric (percentages without the % sign)
+
+Paper text:
+{paper_text[:50000]}"""
+
+    try:
+        # Call Claude Code CLI
+        result = subprocess.run(
+            ["claude", "-p", prompt, "--output-format", "text"],
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+
+        if result.returncode != 0:
+            print(f"Claude CLI error: {result.stderr}")
+            return []
+
+        output = result.stdout.strip()
+
+        # Try to parse JSON from output
+        # Claude might include explanation text, so try to find the JSON array
+        json_match = re.search(r'\[.*?\]', output, re.DOTALL)
+        if json_match:
+            try:
+                scores = json_mod.loads(json_match.group())
+                # Validate format
+                valid_scores = []
+                for score in scores:
+                    if isinstance(score, dict) and "name" in score and "value" in score:
+                        try:
+                            valid_scores.append({
+                                "name": score["name"],
+                                "type": score["name"].lower().replace(" ", "_"),
+                                "value": float(score["value"]),
+                            })
+                        except (ValueError, TypeError):
+                            continue
+                return valid_scores
+            except json_mod.JSONDecodeError:
+                pass
+
+        return []
+
+    except subprocess.TimeoutExpired:
+        print("Claude CLI timed out")
+        return []
+    except FileNotFoundError:
+        print("Claude CLI not found. Make sure 'claude' is installed and in PATH.")
+        return []
+    except Exception as e:
+        print(f"Error calling Claude CLI: {e}")
+        return []
+
+
+def lookup_benchmark_from_papers(
+    repo_id: str,
+    benchmark_name: str,
+) -> Optional[float]:
+    """
+    Look up a specific benchmark score from HuggingFace Papers.
+
+    Args:
+        repo_id: HuggingFace repository ID
+        benchmark_name: Name of the benchmark to find
+
+    Returns:
+        The benchmark score if found, None otherwise
+    """
+    # Get linked papers
+    papers = get_papers_for_model(repo_id)
+
+    if not papers:
+        print(f"No papers found linked to {repo_id}")
+        return None
+
+    model_name = repo_id.split("/")[-1] if "/" in repo_id else repo_id
+    print(f"Found {len(papers)} paper(s) linked to {repo_id}")
+
+    # Try each paper until we find the benchmark
+    for paper in papers:
+        paper_url = paper.get("url", "")
+        paper_title = paper.get("title") or paper.get("arxiv_id") or "unknown"
+        print(f"  Checking paper: {paper_title}")
+
+        # Extract text from PDF
+        paper_text = extract_text_from_pdf(paper_url)
+        if not paper_text:
+            continue
+
+        # Use LLM to extract the specific benchmark score
+        scores = extract_scores_with_llm(paper_text, model_name, benchmark_name)
+
+        for score in scores:
+            if score.get("name", "").lower().replace(" ", "_") == benchmark_name.lower().replace(" ", "_"):
+                return score.get("value")
+
+    return None
+
+
+def extract_all_scores_from_papers(
+    repo_id: str,
+) -> List[Dict[str, Any]]:
+    """
+    Extract all benchmark scores from papers linked to a model.
+
+    Args:
+        repo_id: HuggingFace repository ID
+
+    Returns:
+        List of metric dictionaries with name, type, and value
+    """
+    # Get linked papers
+    papers = get_papers_for_model(repo_id)
+
+    if not papers:
+        print(f"No papers found linked to {repo_id}")
+        return []
+
+    model_name = repo_id.split("/")[-1] if "/" in repo_id else repo_id
+    print(f"Found {len(papers)} paper(s) linked to {repo_id}")
+
+    all_scores = []
+    seen_benchmarks = set()
+
+    # Try each paper
+    for paper in papers:
+        paper_url = paper.get("url", "")
+        paper_title = paper.get("title") or paper.get("arxiv_id") or "unknown"
+        print(f"  Processing paper: {paper_title}")
+
+        # Extract text from PDF
+        paper_text = extract_text_from_pdf(paper_url)
+        if not paper_text:
+            continue
+
+        # Use LLM to extract all benchmark scores
+        scores = extract_scores_with_llm(paper_text, model_name)
+
+        for score in scores:
+            benchmark_key = score.get("name", "").lower().replace(" ", "_")
+            if benchmark_key and benchmark_key not in seen_benchmarks:
+                seen_benchmarks.add(benchmark_key)
+                all_scores.append(score)
+
+    return all_scores
+
+
+# ============================================================================
 # Add Single Benchmark Evaluation
 # ============================================================================
 
@@ -1428,8 +1784,7 @@ def add_single_eval(
         elif source == "aa":
             value = lookup_benchmark_from_aa(repo_id, benchmark_name)
         elif source == "papers":
-            print("HuggingFace Papers lookup not yet implemented")
-            return False
+            value = lookup_benchmark_from_papers(repo_id, benchmark_name)
         else:
             print(f"Unknown source: {source}")
             return False
@@ -1958,7 +2313,7 @@ Reminder:
             Sources:
               - model_card: Extract from the model's README (default)
               - aa: Query Artificial Analysis API (requires AA_API_KEY)
-              - papers: Query HuggingFace Papers (not yet implemented)
+              - papers: Extract from linked HuggingFace Papers (uses Claude Code)
             """
         ),
     )
@@ -1968,6 +2323,41 @@ Reminder:
     add_eval_parser.add_argument("--value", type=float, help="Manually provide the score (skips lookup)")
     add_eval_parser.add_argument("--create-pr", action="store_true", help="Create PR instead of direct push")
     add_eval_parser.add_argument("--apply", action="store_true", help="Apply changes (default is preview only)")
+
+    # Extract from papers command
+    paper_parser = subparsers.add_parser(
+        "extract-paper",
+        help="Extract all evaluation scores from papers linked to a model",
+        formatter_class=argparse.RawTextHelpFormatter,
+        description="Fetch linked papers from HuggingFace, extract PDF text, and use Claude Code to find benchmark scores.",
+        epilog=dedent(
+            """\
+            Examples:
+              # Preview scores from linked papers
+              uv run scripts/evaluation_manager.py extract-paper --repo-id "meta-llama/Llama-3.1-8B-Instruct"
+
+              # Apply changes (upload to repo)
+              uv run scripts/evaluation_manager.py extract-paper --repo-id "meta-llama/Llama-3.1-8B-Instruct" --apply
+
+              # Create a PR instead
+              uv run scripts/evaluation_manager.py extract-paper --repo-id "meta-llama/Llama-3.1-8B-Instruct" --create-pr
+
+            How it works:
+              1. Fetches papers linked to the model via HuggingFace API
+              2. Downloads and extracts text from paper PDFs (arXiv)
+              3. Uses Claude Code to intelligently extract benchmark scores
+              4. Converts scores to .eval_results/ format
+
+            Requirements:
+              - Claude Code CLI must be installed and available in PATH
+              - HF_TOKEN for accessing model info (optional but recommended)
+            """
+        ),
+    )
+    paper_parser.add_argument("--repo-id", type=str, required=True, help="HF repository ID")
+    paper_parser.add_argument("--filename", type=str, default="paper_evals.yaml", help="Output filename in .eval_results/ (default: paper_evals.yaml)")
+    paper_parser.add_argument("--create-pr", action="store_true", help="Create PR instead of direct push")
+    paper_parser.add_argument("--apply", action="store_true", help="Apply changes (default is to print YAML only)")
 
     # Get PRs command
     prs_parser = subparsers.add_parser(
@@ -2110,6 +2500,46 @@ Reminder:
                 create_pr=args.create_pr,
                 apply=args.apply,
             )
+
+        elif args.command == "extract-paper":
+            # Extract all scores from linked papers
+            metrics = extract_all_scores_from_papers(repo_id=args.repo_id)
+
+            if not metrics:
+                print("No evaluation scores extracted from papers")
+                return
+
+            # Convert to new .eval_results/ format
+            # Try to get paper URL for attribution
+            papers = get_papers_for_model(args.repo_id)
+            paper_url = papers[0].get("url") if papers else "https://huggingface.co/papers"
+
+            eval_results = convert_to_eval_results_format(
+                metrics=metrics,
+                source_url=paper_url,
+                source_name="Paper",
+            )
+
+            if not eval_results:
+                print("No benchmarks could be mapped to Hub dataset IDs")
+                print("Check that benchmark names match entries in metric_mapping.json")
+                return
+
+            apply_changes = args.apply or args.create_pr
+
+            # Default behavior: print YAML
+            yaml = require_yaml()
+            print("\nExtracted evaluations from papers (.eval_results/ format):")
+            print(yaml.dump(eval_results, sort_keys=False, allow_unicode=True))
+
+            if apply_changes:
+                upload_eval_results(
+                    repo_id=args.repo_id,
+                    results=eval_results,
+                    filename=args.filename,
+                    create_pr=args.create_pr,
+                    commit_message="Add evaluation results extracted from paper"
+                )
 
         elif args.command == "get-prs":
             list_open_prs(args.repo_id)

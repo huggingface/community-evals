@@ -26,6 +26,7 @@ Core dependencies are auto-installed via PEP 723 headers when using `uv run`:
 - python-dotenv>=1.0.0
 - pyyaml>=6.0
 - requests>=2.31.0
+- pypdf>=4.0.0 (for paper extraction)
 
 # IMPORTANT: Check for Existing PRs
 
@@ -77,7 +78,7 @@ uv run scripts/evaluation_manager.py add-eval \
 **Sources:**
 - `model_card` (default): Extract from README tables
 - `aa`: Query Artificial Analysis API (requires `AA_API_KEY`)
-- `papers`: HuggingFace Papers (not yet implemented)
+- `papers`: Extract from linked HuggingFace Papers (uses Claude Code CLI)
 
 ## 2. Batch Process Trending Models
 
@@ -150,6 +151,37 @@ uv run scripts/evaluation_manager.py extract-readme \
   --table 1 \
   --create-pr
 ```
+
+## 4. Extract from Papers
+
+For models with linked papers on HuggingFace (arxiv papers linked in model card):
+
+```bash
+# Preview scores from linked papers
+uv run scripts/evaluation_manager.py extract-paper \
+  --repo-id "meta-llama/Llama-3.1-8B-Instruct"
+
+# Create PR with extracted scores
+uv run scripts/evaluation_manager.py extract-paper \
+  --repo-id "model/name" \
+  --create-pr
+
+# Or use as source for single benchmark
+uv run scripts/evaluation_manager.py add-eval \
+  --benchmark MMLU \
+  --repo-id "model/name" \
+  --source papers
+```
+
+**How it works:**
+1. Fetches papers linked to the model via HuggingFace API
+2. Downloads and extracts text from paper PDFs (arXiv)
+3. Uses Claude Code CLI to intelligently extract benchmark scores
+4. Converts scores to `.eval_results/` format
+
+**Requirements:**
+- Claude Code CLI must be installed and available in PATH
+- HF_TOKEN for accessing model info (optional but recommended)
 
 ---
 
@@ -250,6 +282,11 @@ uv run scripts/evaluation_manager.py extract-readme \
   --table N \
   [--apply | --create-pr]
 
+# Extract from linked papers (uses Claude Code)
+uv run scripts/evaluation_manager.py extract-paper \
+  --repo-id "model/name" \
+  [--apply | --create-pr]
+
 # View current evaluations
 uv run scripts/evaluation_manager.py show --repo-id "model/name"
 
@@ -280,6 +317,15 @@ uv run scripts/evaluation_manager.py add-eval --help
 **"Model not found in Artificial Analysis"**
 → Not all models are tracked by AA; try `--source model_card` instead
 
+**"No papers found linked to model"**
+→ The model doesn't have any arxiv papers linked in its metadata
+
+**"Claude CLI not found"**
+→ Install Claude Code CLI and ensure `claude` is in your PATH
+
+**"Error extracting text from PDF"**
+→ The paper PDF may be image-based or have complex formatting; try another source
+
 ---
 
 # Advanced: Run Custom Evaluations
@@ -303,3 +349,4 @@ These require GPU hardware and are for generating new evaluation results, not im
 3. **Use dry-run** for batch processing to verify which models have scores
 4. **Create PRs** for models you don't own; use `--apply` for your own
 5. **Verify scores** - compare output against source before submitting
+6. **Track results** - use the `--runs-dir` option to track results and never delete run logs.

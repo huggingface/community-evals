@@ -6,6 +6,7 @@
 #     "python-dotenv>=1.2.1",
 #     "pyyaml>=6.0.3",
 #     "requests>=2.32.5",
+#     "pypdf>=4.0.0",
 # ]
 # ///
 """

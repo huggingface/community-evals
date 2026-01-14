@@ -4,6 +4,7 @@ python-dotenv>=1.2.1
 pyyaml>=6.0.3
 requests>=2.32.5
 markdown-it-py>=3.0.0
+pypdf>=4.0.0
 
 # Inference provider evaluation
 inspect-ai>=0.3.0
