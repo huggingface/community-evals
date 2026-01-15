@@ -1,0 +1,191 @@
+{
+  "benchmark": "HLE",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-14T09:37:09.852885+00:00",
+  "results": [
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:10.742922+00:00"
+    },
+    {
+      "repo_id": "naver-hyperclovax/HyperCLOVAX-SEED-Think-32B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-32B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:10.977373+00:00"
+    },
+    {
+      "repo_id": "MiniMaxAI/MiniMax-M2.1",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.1",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:11.252560+00:00"
+    },
+    {
+      "repo_id": "openbmb/AgentCPM-Explore",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openbmb/AgentCPM-Explore",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:12.141319+00:00"
+    },
+    {
+      "repo_id": "miromind-ai/MiroThinker-v1.5-30B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/miromind-ai/MiroThinker-v1.5-30B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:12.438583+00:00"
+    },
+    {
+      "repo_id": "miromind-ai/MiroThinker-v1.5-235B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/miromind-ai/MiroThinker-v1.5-235B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:12.952112+00:00"
+    },
+    {
+      "repo_id": "NousResearch/NousCoder-14B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/NousResearch/NousCoder-14B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:13.213666+00:00"
+    },
+    {
+      "repo_id": "tiiuae/Falcon-H1R-7B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/tiiuae/Falcon-H1R-7B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:13.489377+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2-2.6B-Transcript",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2-2.6B-Transcript",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:13.766801+00:00"
+    },
+    {
+      "repo_id": "zai-org/GLM-4.7",
+      "benchmark": "HLE",
+      "value": 24.8,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:37:14.026344+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-JP",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-JP",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:14.314171+00:00"
+    },
+    {
+      "repo_id": "LGAI-EXAONE/K-EXAONE-236B-A23B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:14.618960+00:00"
+    },
+    {
+      "repo_id": "skt/A.X-K1",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/skt/A.X-K1",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:14.887318+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Base",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Base",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:15.149210+00:00"
+    },
+    {
+      "repo_id": "upstage/Solar-Open-100B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/upstage/Solar-Open-100B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:15.615209+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:16.172029+00:00"
+    },
+    {
+      "repo_id": "IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/IQuestLab/IQuest-Coder-V1-40B-Loop-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:16.496739+00:00"
+    },
+    {
+      "repo_id": "tencent/Youtu-LLM-2B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/tencent/Youtu-LLM-2B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:16.760355+00:00"
+    },
+    {
+      "repo_id": "naver-hyperclovax/HyperCLOVAX-SEED-Omni-8B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Omni-8B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:16.996950+00:00"
+    },
+    {
+      "repo_id": "baichuan-inc/Baichuan-M3-235B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/baichuan-inc/Baichuan-M3-235B",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:37:17.244549+00:00"
+    }
+  ]
+}

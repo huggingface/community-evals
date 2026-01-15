@@ -1,85 +1,60 @@
-# Manual Model Card Score Extraction
+# Model Card Score Extraction via HF MCP Server
 
-This document provides instructions for manually extracting benchmark scores from HuggingFace model cards when the automated `evaluation_manager.py` script fails to find scores.
-
-**Use this as a last resort** after the automated tools return "score not available".
+This document provides instructions for extracting benchmark scores from HuggingFace model cards using the HF MCP Server tools.
 
 ---
 
-## When to Use Manual Extraction
+## Overview
 
-Use manual extraction when:
-1. `evaluation_manager.py add-eval --source model_card` returns "not available"
-2. You suspect the model card contains the score but in an unusual format
-3. The benchmark name varies from standard naming conventions
+Model cards often contain evaluation tables with benchmark scores. This guide shows how to:
 
----
-
-## Step 1: Fetch the Model Card README
-
-Use the HuggingFace Hub CLI or API to fetch the raw README content:
-
-```bash
-# Using huggingface-cli (recommended)
-huggingface-cli download {org}/{model} README.md --local-dir /tmp/model-card
-cat /tmp/model-card/README.md
-
-# Using curl (direct raw URL)
-curl -s "https://huggingface.co/{org}/{model}/raw/main/README.md"
-
-# Using huggingface_hub Python library
-python -c "
-from huggingface_hub import hf_hub_download
-path = hf_hub_download('{org}/{model}', 'README.md')
-print(open(path).read())
-"
-```
-
-Or use WebFetch to read the model page directly:
-```
-WebFetch: https://huggingface.co/{org}/{model}
-Prompt: Extract all benchmark scores and evaluation results from this model card
-```
+1. Use `hub_repo_details` to fetch model card content
+2. Search for benchmark variations in the README
+3. Extract and normalize scores
+4. Format results for `.eval_results/`
 
 ---
 
-## Step 2: Search for Benchmark Variations
+## Step 1: Fetch the Model Card
+
+Use `hub_repo_details` to get the model's README content:
+
+```
+mcp__hf-mcp-server__hub_repo_details
+  repo_ids: ["org/model-name"]
+  include_readme: true
+```
+
+This returns:
+- Model metadata (downloads, likes, tags, pipeline_tag)
+- Full README content (when `include_readme: true`)
+- Linked papers and datasets
+
+### Batch Fetching
+
+You can fetch multiple models at once:
+
+```
+mcp__hf-mcp-server__hub_repo_details
+  repo_ids: ["meta-llama/Llama-3.1-8B-Instruct", "Qwen/Qwen2.5-7B-Instruct"]
+  include_readme: true
+```
+
+---
+
+## Step 2: Search for Benchmark Scores
+
+### Benchmark Name Variations
 
 Model cards use inconsistent naming. Search for these variations:
 
-### HLE (Humanity's Last Exam)
-- `HLE`
-- `hle`
-- `Humanity's Last Exam`
-- `HLE (Text Only)`
-- `hle_text_only`
-
-### GPQA
-- `GPQA`
-- `GPQA Diamond`
-- `gpqa_diamond`
-- `GPQA-Diamond`
-
-### MMLU-Pro
-- `MMLU-Pro`
-- `MMLU Pro`
-- `mmlu_pro`
-- `MMLU-PRO`
-
-### MMLU
-- `MMLU`
-- `mmlu`
-- `Massive Multitask Language Understanding`
-
-### GSM8K
-- `GSM8K`
-- `gsm8k`
-- `GSM-8K`
-- `Grade School Math`
-
-### Other Common Benchmarks
-| Benchmark | Variations |
-|-----------|------------|
+| Benchmark | Variations to Search |
+|-----------|---------------------|
+| HLE | `HLE`, `hle`, `Humanity's Last Exam`, `HLE (Text Only)` |
+| GPQA | `GPQA`, `GPQA Diamond`, `gpqa_diamond`, `GPQA-Diamond` |
+| MMLU-Pro | `MMLU-Pro`, `MMLU Pro`, `mmlu_pro`, `MMLU-PRO` |
+| MMLU | `MMLU`, `mmlu`, `Massive Multitask Language Understanding` |
+| GSM8K | `GSM8K`, `gsm8k`, `GSM-8K`, `Grade School Math` |
 | HumanEval | `HumanEval`, `humaneval`, `human_eval` |
 | HellaSwag | `HellaSwag`, `hellaswag`, `hella_swag` |
 | ARC-Challenge | `ARC-Challenge`, `ARC-C`, `arc_challenge` |
@@ -128,7 +103,7 @@ Our model achieves **85.2%** on MMLU, **72.1%** on GPQA Diamond, and **12.3%** o
 
 ---
 
-## Step 4: Extract and Normalize the Score
+## Step 4: Extract and Normalize Scores
 
 ### Score Format Normalization
 
@@ -137,27 +112,11 @@ Scores may be presented as:
 - **Decimals**: `0.852` (multiply by 100 for percentage)
 - **Fractions**: `85.2/100`
 
-**Important**: The `.eval_results/` format expects decimal values (0-1 scale) for most benchmarks, but some benchmarks use percentage scale. Check the source data to determine the correct scale.
-
-### Extraction Regex Patterns
-
-```python
-import re
-
-# Find score after benchmark name
-patterns = [
-    r'(?:HLE|hle)[^\d]*(\d+\.?\d*)',           # HLE: 12.3 or HLE 12.3%
-    r'(?:GPQA|gpqa)[^\d]*(\d+\.?\d*)',         # GPQA variations
-    r'(?:MMLU-Pro|mmlu.pro)[^\d]*(\d+\.?\d*)', # MMLU-Pro variations
-]
-
-# For table extraction
-table_row = r'\|\s*(?:HLE|hle)[^\|]*\|\s*(\d+\.?\d*)'
-```
+**Important**: The `.eval_results/` format expects values matching the benchmark's standard scale. Most benchmarks use percentage scale (0-100).
 
 ---
 
-## Step 5: Create the Evaluation Result
+## Step 5: Format for .eval_results/
 
 Once you have the score, format it for `.eval_results/`:
 
@@ -166,14 +125,14 @@ Once you have the score, format it for `.eval_results/`:
 - dataset:
     id: cais/hle           # Hub dataset ID (see mapping below)
     task_id: default       # Task variant if applicable
-  value: 0.123             # Score as decimal (12.3% = 0.123)
+  value: 12.3              # Score value
   date: "2026-01-14"       # ISO date of extraction
   source:
     url: https://huggingface.co/{org}/{model}
     name: Model Card
 ```
 
-### Dataset ID Mapping
+### Dataset ID Reference
 
 | Benchmark | Dataset ID | Task ID |
 |-----------|------------|---------|
@@ -195,50 +154,91 @@ Once you have the score, format it for `.eval_results/`:
 
 ---
 
-## Example: Manual Extraction Workflow
+## Complete Example Workflow
+
+### Scenario: Extract HLE score from a model card
 
 ```
-1. Automated extraction failed:
-   $ uv run scripts/evaluation_manager.py add-eval --benchmark HLE --repo-id "org/model"
-   > Not found: HLE score not available
+1. Fetch model card:
+   mcp__hf-mcp-server__hub_repo_details
+     repo_ids: ["Qwen/Qwen2.5-72B-Instruct"]
+     include_readme: true
 
-2. Fetch README manually:
-   $ curl -s "https://huggingface.co/org/model/raw/main/README.md" | grep -i "hle\|humanity"
+2. Search README for HLE variations:
+   Found: "| HLE | 18.5 |" in evaluation table
 
-3. Found in unusual format:
-   > "Scores on Humanity's Last Exam (text-only): 18.5%"
-
-4. Create PR with manual value:
+3. Create the eval result:
    $ uv run scripts/evaluation_manager.py add-eval \
        --benchmark HLE \
-       --repo-id "org/model" \
+       --repo-id "Qwen/Qwen2.5-72B-Instruct" \
        --value 18.5 \
        --create-pr
 ```
 
 ---
 
-## Common Extraction Failures and Solutions
+## Finding Models with Evaluations
 
-### Problem: Score in image/figure only
-**Solution**: Check if there's a linked technical report or paper with tabular data
+Use `model_search` to find models that might have benchmark scores:
 
-### Problem: Benchmark name differs significantly
-**Solution**: Search for the underlying task name (e.g., "graduate-level science" for GPQA)
+### Search for Trending Models
+```
+mcp__hf-mcp-server__model_search
+  task: "text-generation"
+  sort: "trendingScore"
+  limit: 20
+```
 
-### Problem: Score aggregated with other metrics
-**Solution**: Look for breakdown tables or supplementary materials
+### Search by Author
+```
+mcp__hf-mcp-server__model_search
+  author: "meta-llama"
+  task: "text-generation"
+  limit: 10
+```
 
-### Problem: Multiple scores for same benchmark (different settings)
-**Solution**: Prefer "0-shot" or "standard" settings; note the configuration in source attribution
+### Search by Query
+```
+mcp__hf-mcp-server__model_search
+  query: "instruct chat"
+  task: "text-generation"
+  limit: 20
+```
+
+Then use `hub_repo_details` on promising results to check their model cards.
 
 ---
 
-## Reporting Unextractable Scores
+## Tips for Better Extraction
 
-If manual extraction also fails, document why:
+### 1. Check the Full README
+Model cards may have scores in different sections (Overview, Evaluation, Benchmarks, Results).
+
+### 2. Look for Multiple Tables
+Some model cards have separate tables for different benchmark categories.
+
+### 3. Note Evaluation Settings
+Papers may report different settings (0-shot vs 5-shot, with/without CoT). Document which setting you're extracting.
+
+### 4. Verify Against Papers
+If both paper and model card have scores, prefer the paper as the authoritative source but verify they match.
+
+---
+
+## Common Issues
+
+### Score in Image/Figure Only
+**Solution**: Check if there's a linked technical report or paper with tabular data. Use `paper_search` to find it.
+
+### Benchmark Name Differs Significantly
+**Solution**: Search for the underlying task name (e.g., "graduate-level science" for GPQA).
+
+### Multiple Scores for Same Benchmark
+**Solution**: Prefer "0-shot" or "standard" settings; note the configuration in source attribution.
+
+### Score Not Found
 - Score genuinely not present in model card
-- Score only in non-text format (images, PDFs without text layer)
 - Benchmark not evaluated by model authors
+- Try `paper_search` to find scores in linked papers
 
-This helps distinguish "not found by automation" from "truly not available".
+**Solution**: Document why extraction failed to distinguish "not found by automation" from "truly not available".

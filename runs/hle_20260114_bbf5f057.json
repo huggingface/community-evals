@@ -1,0 +1,191 @@
+{
+  "benchmark": "HLE",
+  "source": "aa",
+  "source_url": "https://artificialanalysis.ai",
+  "sort": "downloads",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-14T09:31:14.239119+00:00",
+  "results": [
+    {
+      "repo_id": "Qwen/Qwen2.5-3B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:15.395626+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:15.807193+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-0.6B",
+      "benchmark": "HLE",
+      "value": 0.057,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:16.358151+00:00"
+    },
+    {
+      "repo_id": "openai/gpt-oss-20b",
+      "benchmark": "HLE",
+      "value": 0.098,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:16.757823+00:00"
+    },
+    {
+      "repo_id": "openai-community/gpt2",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:17.308549+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-7B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:17.574212+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:18.131410+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-14B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:18.681733+00:00"
+    },
+    {
+      "repo_id": "dphn/dolphin-2.9.1-yi-1.5-34b",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:19.088174+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-8B",
+      "benchmark": "HLE",
+      "value": 0.056,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:19.650196+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-32B-Instruct",
+      "benchmark": "HLE",
+      "value": 0.038,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:20.206741+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-4B",
+      "benchmark": "HLE",
+      "value": 0.059,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:20.812318+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-1.7B",
+      "benchmark": "HLE",
+      "value": 0.048,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:21.346898+00:00"
+    },
+    {
+      "repo_id": "facebook/opt-125m",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:21.913922+00:00"
+    },
+    {
+      "repo_id": "openai/gpt-oss-120b",
+      "benchmark": "HLE",
+      "value": 0.185,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:22.452764+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "benchmark": "HLE",
+      "value": 0.073,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:23.007436+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-1B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:23.405670+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:23.975638+00:00"
+    },
+    {
+      "repo_id": "google/gemma-3-1b-it",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "not_found",
+      "timestamp": "2026-01-14T09:31:24.373465+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "benchmark": "HLE",
+      "value": 0.055,
+      "source": "aa",
+      "source_url": "https://artificialanalysis.ai",
+      "status": "dry_run",
+      "timestamp": "2026-01-14T09:31:24.764944+00:00"
+    }
+  ]
+}
