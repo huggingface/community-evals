@@ -28,6 +28,34 @@ Core dependencies are auto-installed via PEP 723 headers when using `uv run`:
 - requests>=2.31.0
 - pypdf>=4.0.0 (for paper extraction)
 
+# HF MCP Server Tools
+
+This skill uses the HF MCP Server for model and paper discovery. Key tools:
+
+- **`hub_repo_details`**: Fetch model metadata and README content
+  ```
+  mcp__hf-mcp-server__hub_repo_details
+    repo_ids: ["org/model-name"]
+    include_readme: true
+  ```
+
+- **`paper_search`**: Search ML papers on HuggingFace
+  ```
+  mcp__hf-mcp-server__paper_search
+    query: "model name benchmark"
+    results_limit: 5
+  ```
+
+- **`model_search`**: Find models by task, author, or trending
+  ```
+  mcp__hf-mcp-server__model_search
+    task: "text-generation"
+    sort: "trendingScore"
+    limit: 20
+  ```
+
+See `references/hf_papers_extraction.md` and `references/model_card_extraction.md` for detailed usage.
+
 # IMPORTANT: Check for Existing PRs
 
 **Before creating ANY pull request, ALWAYS check for existing open PRs:**
@@ -76,9 +104,9 @@ uv run scripts/evaluation_manager.py add-eval \
 ```
 
 **Sources:**
-- `model_card` (default): Extract from README tables
+- `model_card` (default): Extract from README tables (use `hub_repo_details` MCP tool)
 - `aa`: Query Artificial Analysis API (requires `AA_API_KEY`)
-- `papers`: Extract from linked HuggingFace Papers (uses Claude Code CLI)
+- Manual: Extract from linked papers using `paper_search` MCP tool
 
 ## 2. Batch Process Trending Models
 
@@ -154,34 +182,38 @@ uv run scripts/evaluation_manager.py extract-readme \
 
 ## 4. Extract from Papers
 
-For models with linked papers on HuggingFace (arxiv papers linked in model card):
+For models with linked papers on HuggingFace, use the HF MCP Server tools:
 
+### Step 1: Find linked papers
+```
+mcp__hf-mcp-server__hub_repo_details
+  repo_ids: ["meta-llama/Llama-3.1-8B-Instruct"]
+  include_readme: true
+```
+Look for `arxiv:` tags in the response.
+
+### Step 2: Search for paper content
+```
+mcp__hf-mcp-server__paper_search
+  query: "Llama 3.1 2407.21783"
+  results_limit: 3
+```
+
+### Step 3: Extract scores and create PR
 ```bash
-# Preview scores from linked papers
-uv run scripts/evaluation_manager.py extract-paper \
-  --repo-id "meta-llama/Llama-3.1-8B-Instruct"
-
-# Create PR with extracted scores
-uv run scripts/evaluation_manager.py extract-paper \
-  --repo-id "model/name" \
-  --create-pr
-
-# Or use as source for single benchmark
 uv run scripts/evaluation_manager.py add-eval \
   --benchmark MMLU \
-  --repo-id "model/name" \
-  --source papers
+  --repo-id "meta-llama/Llama-3.1-8B-Instruct" \
+  --value 73.5 \
+  --create-pr
 ```
 
 **How it works:**
-1. Fetches papers linked to the model via HuggingFace API
-2. Downloads and extracts text from paper PDFs (arXiv)
-3. Uses Claude Code CLI to intelligently extract benchmark scores
-4. Converts scores to `.eval_results/` format
+1. Use `hub_repo_details` to find arxiv paper IDs in model tags
+2. Use `paper_search` to retrieve paper abstracts with benchmark scores
+3. Extract scores from paper content and create eval results
 
-**Requirements:**
-- Claude Code CLI must be installed and available in PATH
-- HF_TOKEN for accessing model info (optional but recommended)
+See `references/hf_papers_extraction.md` for detailed instructions.
 
 ---
 
@@ -260,7 +292,7 @@ uv run scripts/evaluation_manager.py get-prs --repo-id "model/name"
 uv run scripts/evaluation_manager.py add-eval \
   --benchmark HLE \
   --repo-id "model/name" \
-  [--source model_card|aa|papers] \
+  [--source model_card|aa] \
   [--value 84.5] \
   [--apply | --create-pr]
 
@@ -282,10 +314,8 @@ uv run scripts/evaluation_manager.py extract-readme \
   --table N \
   [--apply | --create-pr]
 
-# Extract from linked papers (uses Claude Code)
-uv run scripts/evaluation_manager.py extract-paper \
-  --repo-id "model/name" \
-  [--apply | --create-pr]
+# Extract from linked papers (use HF MCP Server tools first)
+# See references/hf_papers_extraction.md for MCP-based workflow
 
 # View current evaluations
 uv run scripts/evaluation_manager.py show --repo-id "model/name"
@@ -318,13 +348,10 @@ uv run scripts/evaluation_manager.py add-eval --help
 → Not all models are tracked by AA; try `--source model_card` instead
 
 **"No papers found linked to model"**
-→ The model doesn't have any arxiv papers linked in its metadata
+→ The model doesn't have any arxiv papers linked in its metadata; use `hub_repo_details` to check tags
 
-**"Claude CLI not found"**
-→ Install Claude Code CLI and ensure `claude` is in your PATH
-
-**"Error extracting text from PDF"**
-→ The paper PDF may be image-based or have complex formatting; try another source
+**"Paper search returns no results"**
+→ Try different query terms (model name, arxiv ID, benchmark name)
 
 ---
 

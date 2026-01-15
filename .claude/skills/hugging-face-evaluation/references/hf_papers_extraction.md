@@ -1,11 +1,6 @@
-# Manual Paper Score Extraction
+# Paper Score Extraction via HF MCP Server
 
-This document provides instructions for manually extracting benchmark scores from academic papers linked to HuggingFace models when automated tools are unavailable or fail.
-
-**Use this approach when**:
-- The `evaluation_manager.py extract-paper` command is not available
-- You need more control over the extraction process
-- The automated tool failed to find specific benchmarks
+This document provides instructions for extracting benchmark scores from academic papers linked to HuggingFace models using the HF MCP Server tools.
 
 ---
 
@@ -13,164 +8,101 @@ This document provides instructions for manually extracting benchmark scores fro
 
 Papers linked to HuggingFace models often contain comprehensive benchmark results that aren't in the model card. This guide shows how to:
 
-1. Discover papers linked to a model
-2. Download and extract text from paper PDFs
-3. Use Claude to extract benchmark scores
+1. Use `hub_repo_details` to discover papers linked to a model
+2. Use `paper_search` to find and retrieve paper content
+3. Extract benchmark scores from paper abstracts/content
 4. Format results for `.eval_results/`
 
 ---
 
 ## Step 1: Discover Linked Papers
 
-### Option A: Check HuggingFace API
+### Get Model Details with README
 
-```bash
-# Fetch model metadata
-curl -s "https://huggingface.co/api/models/{org}/{model}" | python -m json.tool
+Use `hub_repo_details` to fetch model metadata including linked papers:
+
+```
+mcp__hf-mcp-server__hub_repo_details
+  repo_ids: ["org/model-name"]
+  include_readme: true
 ```
 
 Look for arXiv references in:
 - `tags` array: entries starting with `arxiv:` (e.g., `"arxiv:2411.15124"`)
-- `cardData.arxiv`: direct arxiv ID field
-- `paperInfo`: array of paper metadata
+- README content: arXiv links or paper references
+- Model metadata: `paperInfo` or `cardData.arxiv` fields
 
-### Option B: Check the Model Card
+### Example Response Fields
 
-Visit `https://huggingface.co/{org}/{model}` and look for:
-- "Paper" or "Technical Report" links in the header
-- arXiv links in the README content
-- References section at the bottom
-
-### Option C: Use WebFetch
-
-```
-WebFetch: https://huggingface.co/api/models/{org}/{model}
-Prompt: Find all arxiv paper IDs linked to this model. Look in tags (format: arxiv:XXXX.XXXXX), cardData.arxiv field, and paperInfo array.
-```
+The response will include:
+- Model metadata (downloads, likes, tags)
+- README content (if `include_readme: true`)
+- Any linked paper IDs in tags
 
 ---
 
-## Step 2: Download Paper PDF
+## Step 2: Search for Papers
 
-Once you have an arXiv ID (e.g., `2411.15124`), construct the PDF URL:
-
-```
-https://arxiv.org/pdf/{arxiv_id}.pdf
-```
-
-Example:
-```bash
-# Download PDF
-curl -L "https://arxiv.org/pdf/2411.15124.pdf" -o paper.pdf
-```
-
-### Using WebFetch for Paper Content
-
-For quick extraction without downloading:
+Once you have an arXiv ID or want to find related papers, use `paper_search`:
 
 ```
-WebFetch: https://arxiv.org/abs/2411.15124
-Prompt: Extract the abstract and find any links to evaluation results or benchmark scores mentioned.
+mcp__hf-mcp-server__paper_search
+  query: "OLMo-2 evaluation benchmark"
+  results_limit: 5
+  concise_only: false  # Get full abstracts for score extraction
 ```
 
-Note: WebFetch works better with the abstract page (`/abs/`) than the PDF.
+### Search Strategies
+
+**By model name:**
+```
+query: "Llama 3.1 benchmark evaluation"
+```
+
+**By arXiv ID (if known):**
+```
+query: "2411.15124"
+```
+
+**By benchmark + model family:**
+```
+query: "MMLU GPQA Qwen2.5"
+```
 
 ---
 
 ## Step 3: Extract Benchmark Scores
 
-### Method A: Direct Claude Prompting (Recommended)
+The paper search returns abstracts and paper content. Look for:
 
-If you have the paper text, prompt Claude directly:
+### Common Benchmark Mentions
 
-```
-I have a paper about the model "{model_name}". Please extract all benchmark evaluation scores for this model.
+Papers typically report headline numbers in abstracts:
+- "achieves **85.2%** on MMLU"
+- "state-of-the-art results on GPQA Diamond (72.1%)"
+- "HLE score of 12.3%"
 
-Look for common benchmarks like:
-- MMLU, MMLU-Pro
-- GPQA, GPQA Diamond
-- GSM8K, MATH
-- HumanEval, MBPP
-- HLE (Humanity's Last Exam)
-- ARC-Challenge, HellaSwag
-- TruthfulQA, IFEval
-- DROP, SQuAD
+### Benchmark Name Variations
 
-Return the scores as a structured list with:
-- Benchmark name (as written in the paper)
-- Score value (numeric, without % symbol)
-- Any relevant notes (e.g., "0-shot", "5-shot")
+| Standard Name | Paper Variations |
+|---------------|------------------|
+| HLE | Humanity's Last Exam, HLE (Text Only) |
+| GPQA | GPQA Diamond, GPQA-Diamond |
+| MMLU | MMLU, MMLU-Pro, Massive Multitask |
+| GSM8K | GSM8K, GSM-8K, Grade School Math |
+| MATH | MATH, MATH-500 |
+| HumanEval | HumanEval, human_eval |
+| SWE-bench | SWE-bench, SWE-bench Verified |
 
-Paper content:
-{paper_text}
-```
+### Score Format Normalization
 
-### Method B: Using WebFetch on arXiv HTML
-
-```
-WebFetch: https://arxiv.org/abs/2411.15124
-Prompt: Extract all benchmark scores and evaluation results for the main model described in this paper. List each benchmark name and its corresponding score.
-```
-
-### Method C: Section-by-Section Extraction
-
-For long papers, focus on specific sections:
-
-1. **Abstract**: Often mentions headline benchmark numbers
-2. **Results/Experiments section**: Contains detailed tables
-3. **Appendix**: May have additional benchmark breakdowns
-
-Prompt example:
-```
-Focus on the "Experiments" or "Results" section of this paper.
-Extract all benchmark scores reported for {model_name}.
-Present as: Benchmark Name: Score
-```
+- **Percentages**: `85.2%` → use `85.2`
+- **Decimals**: `0.852` → convert to `85.2` if context shows percentages
+- **Accuracy vs Error Rate**: Ensure you're extracting accuracy, not error rate
 
 ---
 
-## Step 4: Interpret Common Table Formats
-
-### Format A: Comparison Table (Most Common)
-
-Papers often compare against baselines:
-
-```
-| Model        | MMLU | GPQA | GSM8K |
-|--------------|------|------|-------|
-| GPT-4        | 86.4 | 53.6 | 92.0  |
-| Our Model    | 85.1 | 51.2 | 89.5  |  <- Extract this row
-| Llama-3      | 79.2 | 46.1 | 84.2  |
-```
-
-**Key**: Identify which row corresponds to the model being evaluated.
-
-### Format B: Per-Task Breakdown
-
-```
-| Benchmark    | Setting | Score |
-|--------------|---------|-------|
-| MMLU         | 5-shot  | 85.1  |
-| MMLU         | 0-shot  | 82.3  |
-| GSM8K        | CoT     | 89.5  |
-```
-
-**Key**: Note the evaluation setting (shots, chain-of-thought, etc.)
-
-### Format C: Aggregated Categories
-
-```
-| Category     | Benchmarks           | Avg Score |
-|--------------|----------------------|-----------|
-| Reasoning    | GPQA, ARC-C, BBH     | 72.4      |
-| Math         | GSM8K, MATH          | 85.2      |
-```
-
-**Key**: Look for individual scores elsewhere or use category averages.
-
----
-
-## Step 5: Format for .eval_results/
+## Step 4: Format for .eval_results/
 
 Once you have extracted scores, format them as YAML:
 
@@ -203,6 +135,9 @@ Once you have extracted scores, format them as YAML:
 | TruthfulQA | `truthfulqa/truthful_qa` | `default` |
 | IFEval | `google/IFEval` | `default` |
 | SWE-bench | `princeton-nlp/SWE-bench_Verified` | `default` |
+| AIME24 | `OpenEvals/aime_24` | `default` |
+| AIME25 | `OpenEvals/aime_2025` | `default` |
+| LiveCodeBench | `livecodebench/livecodebench` | `default` |
 
 ---
 
@@ -211,16 +146,22 @@ Once you have extracted scores, format them as YAML:
 ### Scenario: Extract MMLU score for OLMo-2 from its paper
 
 ```
-1. Find linked papers:
-   $ curl -s "https://huggingface.co/api/models/allenai/OLMo-2-1124-7B-Instruct" | grep -o '"arxiv:[^"]*"'
-   > "arxiv:2411.15124"
-   > "arxiv:2501.00656"
+1. Get model details:
+   mcp__hf-mcp-server__hub_repo_details
+     repo_ids: ["allenai/OLMo-2-1124-7B-Instruct"]
+     include_readme: true
 
-2. Check paper for benchmark tables:
-   WebFetch: https://arxiv.org/abs/2501.00656
-   Prompt: Extract MMLU score for OLMo-2-7B-Instruct from this paper
+   → Found tags: ["arxiv:2411.15124", "arxiv:2501.00656"]
 
-3. Response shows: MMLU = 61.3
+2. Search for the paper:
+   mcp__hf-mcp-server__paper_search
+     query: "OLMo-2 2501.00656"
+     results_limit: 3
+
+   → Returns paper abstract with benchmark scores
+
+3. Extract from abstract:
+   "OLMo-2-7B-Instruct achieves 61.3 on MMLU..."
 
 4. Create the eval result:
    $ uv run scripts/evaluation_manager.py add-eval \
@@ -230,46 +171,29 @@ Once you have extracted scores, format them as YAML:
        --create-pr
 ```
 
-### Alternative: Pure Manual Approach
-
-If you can't use the script, create the YAML file directly:
-
-```yaml
-# .eval_results/mmlu.yaml
-- dataset:
-    id: cais/mmlu
-  value: 61.3
-  date: "2026-01-14"
-  source:
-    url: https://arxiv.org/abs/2501.00656
-    name: Paper
-```
-
-Then submit via HuggingFace PR:
-1. Fork the model repository
-2. Add the file to `.eval_results/mmlu.yaml`
-3. Create a pull request
-
 ---
 
 ## Tips for Better Extraction
 
 ### 1. Check Multiple Papers
-Models may have multiple papers (technical report, follow-up studies). Check all linked papers.
+Models may have multiple linked papers. Use `hub_repo_details` to find all arXiv tags, then search for each.
 
-### 2. Prefer Primary Sources
+### 2. Use Concise Mode for Broad Searches
+```
+mcp__hf-mcp-server__paper_search
+  query: "large language model evaluation"
+  concise_only: true  # 2-sentence summaries
+  results_limit: 10
+```
+
+### 3. Prefer Primary Sources
 Use the model's own release paper rather than papers that cite it.
 
-### 3. Note Evaluation Settings
+### 4. Note Evaluation Settings
 Papers may report different settings (0-shot vs 5-shot, with/without CoT). Document which setting you're extracting.
 
-### 4. Cross-Reference Model Card
+### 5. Cross-Reference Model Card
 If both paper and model card have scores, prefer the paper as the authoritative source but verify they match.
-
-### 5. Handle Score Formats
-- Percentages: `85.2%` -> use `85.2`
-- Decimals: `0.852` -> convert to `85.2` if other scores in paper are percentages
-- Accuracy vs Error Rate: Ensure you're extracting accuracy, not error rate
 
 ---
 
@@ -282,15 +206,15 @@ If both paper and model card have scores, prefer the paper as the authoritative 
 
 **Solution**: Note the discrepancy and prefer the most recent source.
 
-### Score Not Found for Specific Benchmark
+### Score Not Found in Paper Search
 - Paper may not have evaluated that benchmark
-- Benchmark may be in appendix or supplementary materials
-- Benchmark may use a different name
+- Try searching with different query terms
+- Check if benchmark uses a different name
 
-**Solution**: Check appendices, search for benchmark aliases.
+**Solution**: Try alternative query terms, search for benchmark aliases.
 
 ### Multiple Models in Paper
 - Paper describes a family of models (7B, 13B, 70B)
-- Tables may combine results across sizes
+- Results may combine scores across sizes
 
 **Solution**: Carefully match the exact model variant to the HuggingFace repo.
