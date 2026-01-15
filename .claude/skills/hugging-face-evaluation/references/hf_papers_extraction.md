@@ -9,9 +9,10 @@ This document provides instructions for extracting benchmark scores from academi
 Papers linked to HuggingFace models often contain comprehensive benchmark results that aren't in the model card. This guide shows how to:
 
 1. Use `hub_repo_details` to discover papers linked to a model
-2. Use `paper_search` to find and retrieve paper content
+2. Use `paper_search` to find and retrieve paper abstracts
 3. Extract benchmark scores from paper abstracts/content
-4. Format results for `.eval_results/`
+4. Use `WebFetch` on arxiv PDFs for detailed scores not in abstracts
+5. Format results for `.eval_results/`
 
 ---
 
@@ -163,6 +164,11 @@ Once you have extracted scores, format them as YAML:
 3. Extract from abstract:
    "OLMo-2-7B-Instruct achieves 61.3 on MMLU..."
 
+   If score not in abstract, fetch PDF:
+   WebFetch
+     url: "https://arxiv.org/pdf/2501.00656"
+     prompt: "Find MMLU score for OLMo-2-7B-Instruct in the evaluation tables."
+
 4. Create the eval result:
    $ uv run scripts/evaluation_manager.py add-eval \
        --benchmark MMLU \
@@ -197,6 +203,76 @@ If both paper and model card have scores, prefer the paper as the authoritative 
 
 ---
 
+## Step 5: Extract Scores from Paper PDFs
+
+The `paper_search` tool only returns abstracts, which often miss detailed benchmark tables. For comprehensive score extraction, fetch the full paper PDF.
+
+### URL Pattern
+
+HuggingFace paper links map directly to arxiv PDFs:
+
+| Source | URL Pattern |
+|--------|-------------|
+| HF Paper Page | `https://huggingface.co/papers/{arxiv_id}` |
+| arxiv Abstract | `https://arxiv.org/abs/{arxiv_id}` |
+| arxiv PDF | `https://arxiv.org/pdf/{arxiv_id}` |
+
+**Example**: `2601.01739` → `https://arxiv.org/pdf/2601.01739`
+
+### Fetching PDF Content
+
+Use `WebFetch` to retrieve and search the PDF:
+
+```
+WebFetch
+  url: "https://arxiv.org/pdf/{arxiv_id}"
+  prompt: "Extract all benchmark evaluation scores and results tables. Look for metrics like accuracy, F1, BLEU, pass@k, or percentage scores. List each benchmark name and its corresponding score."
+```
+
+### Targeted Extraction Prompts
+
+For specific benchmarks:
+
+```
+prompt: "Find the HLE (Humanity's Last Exam) score in this paper. Look in results tables and the evaluation section."
+```
+
+```
+prompt: "Extract all scores from the main results table. Include benchmark names, model variants, and numerical scores."
+```
+
+```
+prompt: "Find MMLU, GPQA, GSM8K, and MATH scores for the main model in this paper."
+```
+
+### When to Use PDF Extraction
+
+Use PDF fetching when:
+- Abstract doesn't contain specific benchmark scores
+- You need scores for multiple benchmarks
+- Paper mentions "see Table X for full results"
+- Model card references paper but lacks detailed numbers
+
+### Example: Full PDF Extraction Workflow
+
+```
+1. Get arxiv ID from model:
+   mcp__hf-mcp-server__hub_repo_details
+     repo_ids: ["meta-llama/Llama-3.1-70B-Instruct"]
+     include_readme: true
+
+   → Found: arxiv:2407.21783
+
+2. Fetch PDF for detailed scores:
+   WebFetch
+     url: "https://arxiv.org/pdf/2407.21783"
+     prompt: "Extract benchmark scores for Llama 3.1 70B Instruct from all evaluation tables. Include MMLU, GPQA Diamond, HumanEval, GSM8K, MATH, and any other benchmarks."
+
+3. Parse extracted scores and create eval results
+```
+
+---
+
 ## Common Issues
 
 ### Paper Score Differs from Model Card
@@ -207,11 +283,12 @@ If both paper and model card have scores, prefer the paper as the authoritative 
 **Solution**: Note the discrepancy and prefer the most recent source.
 
 ### Score Not Found in Paper Search
+- Paper abstracts rarely contain full benchmark tables
 - Paper may not have evaluated that benchmark
 - Try searching with different query terms
 - Check if benchmark uses a different name
 
-**Solution**: Try alternative query terms, search for benchmark aliases.
+**Solution**: Use `WebFetch` to fetch the full PDF (`https://arxiv.org/pdf/{arxiv_id}`) - detailed scores are typically in results tables within the paper body, not the abstract. Also try alternative query terms or benchmark aliases.
 
 ### Multiple Models in Paper
 - Paper describes a family of models (7B, 13B, 70B)

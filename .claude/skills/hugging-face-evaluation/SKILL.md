@@ -160,6 +160,27 @@ Results are saved to `runs/{benchmark}_{date}_{hash}.json`:
 
 Status values: `pr_created`, `uploaded`, `not_found`, `dry_run`, `error`
 
+**Dry Run Output Table Format:**
+
+When reporting dry run results to users, present findings as a markdown table with these columns:
+
+| Column | Description |
+|--------|-------------|
+| Link | HuggingFace model URL as markdown link |
+| Score | Benchmark score (percentage or `-` if not found) |
+| Source | Where score was found: `Model Card`, `Paper`, `Artificial Analysis`, or `Not found` |
+| Comments | Additional context (e.g., "with tools", "agentic", "reasoning mode") |
+
+Example output:
+```markdown
+| Link | Score | Source | Comments |
+|------|-------|--------|----------|
+| [org/model-name](https://hf.co/org/model-name) | **24.8%** | Model Card | 42.8% with tools |
+| [org/other-model](https://hf.co/org/other-model) | - | Not found | Code-focused model |
+```
+
+**Note:** The automated script may miss scores in non-standard table formats. For comprehensive results, also use `hub_repo_details` with `include_readme: true` to manually inspect model cards for benchmark tables.
+
 ## 3. Extract from README Tables
 
 For models with evaluation tables in their README:
