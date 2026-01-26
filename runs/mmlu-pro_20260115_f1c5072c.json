@@ -1,0 +1,191 @@
+{
+  "benchmark": "MMLU-Pro",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "downloads",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-15T10:36:21.083624+00:00",
+  "results": [
+    {
+      "repo_id": "Qwen/Qwen2.5-3B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:21.625279+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:21.962246+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-0.6B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-0.6B",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:22.218983+00:00"
+    },
+    {
+      "repo_id": "openai/gpt-oss-20b",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai/gpt-oss-20b",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:22.453978+00:00"
+    },
+    {
+      "repo_id": "openai-community/gpt2",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai-community/gpt2",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:22.707973+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:22.948231+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-7B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:23.189108+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-14B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:23.442314+00:00"
+    },
+    {
+      "repo_id": "dphn/dolphin-2.9.1-yi-1.5-34b",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/dphn/dolphin-2.9.1-yi-1.5-34b",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:23.705148+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-8B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-8B",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:24.115659+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-32B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:24.409473+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-4B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:24.664937+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-1.7B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-1.7B",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:24.901504+00:00"
+    },
+    {
+      "repo_id": "facebook/opt-125m",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/facebook/opt-125m",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:25.123998+00:00"
+    },
+    {
+      "repo_id": "openai/gpt-oss-120b",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai/gpt-oss-120b",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:25.557633+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-1B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:25.958439+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": 78.4,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "status": "dry_run",
+      "timestamp": "2026-01-15T10:36:26.231128+00:00"
+    },
+    {
+      "repo_id": "google/gemma-3-1b-it",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/gemma-3-1b-it",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:26.482969+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:26.771695+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "status": "not_found",
+      "timestamp": "2026-01-15T10:36:27.029051+00:00"
+    }
+  ]
+}

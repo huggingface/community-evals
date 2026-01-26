@@ -1,0 +1,191 @@
+{
+  "benchmark": "GSM8K",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-16T07:20:06.655968+00:00",
+  "results": [
+    {
+      "repo_id": "openbmb/AgentCPM-Explore",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openbmb/AgentCPM-Explore",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:07.214752+00:00"
+    },
+    {
+      "repo_id": "naver-hyperclovax/HyperCLOVAX-SEED-Think-32B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-32B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:07.526757+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:07.833719+00:00"
+    },
+    {
+      "repo_id": "zai-org/GLM-4.7",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:08.148415+00:00"
+    },
+    {
+      "repo_id": "MiniMaxAI/MiniMax-M2.1",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.1",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:08.453906+00:00"
+    },
+    {
+      "repo_id": "NousResearch/NousCoder-14B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/NousResearch/NousCoder-14B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:08.725825+00:00"
+    },
+    {
+      "repo_id": "miromind-ai/MiroThinker-v1.5-30B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/miromind-ai/MiroThinker-v1.5-30B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:09.505467+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2-2.6B-Transcript",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2-2.6B-Transcript",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:09.881486+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-JP",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-JP",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:10.431944+00:00"
+    },
+    {
+      "repo_id": "tiiuae/Falcon-H1R-7B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/tiiuae/Falcon-H1R-7B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:10.814806+00:00"
+    },
+    {
+      "repo_id": "FutureMa/Eva-4B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/FutureMa/Eva-4B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:11.088980+00:00"
+    },
+    {
+      "repo_id": "miromind-ai/MiroThinker-v1.5-235B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/miromind-ai/MiroThinker-v1.5-235B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:12.052630+00:00"
+    },
+    {
+      "repo_id": "skt/A.X-K1",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/skt/A.X-K1",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:12.359439+00:00"
+    },
+    {
+      "repo_id": "baichuan-inc/Baichuan-M3-235B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/baichuan-inc/Baichuan-M3-235B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:12.721573+00:00"
+    },
+    {
+      "repo_id": "LGAI-EXAONE/K-EXAONE-236B-A23B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:13.201279+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Thinking-2601",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Thinking-2601",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:13.976581+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:14.223470+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Base",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Base",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:14.490154+00:00"
+    },
+    {
+      "repo_id": "google/functiongemma-270m-it",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/functiongemma-270m-it",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:15.255291+00:00"
+    },
+    {
+      "repo_id": "ai21labs/AI21-Jamba2-Mini",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/ai21labs/AI21-Jamba2-Mini",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:15.590646+00:00"
+    }
+  ]
+}

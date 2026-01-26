@@ -72,6 +72,42 @@ uv run scripts/evaluation_manager.py get-prs --repo-id "username/model-name"
 
 ---
 
+# Update Existing PRs (Preferred)
+
+When a PR already exists (especially one authored by the user), **update that PR instead of opening a new one**. PRs on the Hub live in `refs/pr/<NUMBER>` and must be pushed back to that ref. See: [Hub PRs & refs](https://huggingface.co/docs/hub/en/repositories-pull-requests-discussions).
+
+**Workflow (search → edit → push):**
+
+1. **Search for open PRs and filter by author**
+   ```bash
+   uv run scripts/evaluation_manager.py get-prs --repo-id "org/model-name"
+   ```
+   - From the output, pick PRs where `Author` matches the user.
+   - If multiple PRs exist, update the one that already touches `.eval_results/`.
+
+2. **Download the PR ref locally using the HF CLI**
+   ```bash
+   hf download org/model-name --repo-type model \
+     --revision refs/pr/<PR_NUMBER> \
+     --local-dir /tmp/model-pr-<PR_NUMBER>
+   ```
+
+3. **Get and edit the eval YAML**
+   - File(s) live in `/tmp/model-pr-<PR_NUMBER>/.eval_results/*.yaml`.
+   - If adding a new field or entry (e.g., extra metadata in `eval.yaml`), update the existing YAML rather than creating a second file unless asked.
+
+4. **Upload changes back to the PR ref**
+   ```bash
+   hf upload org/model-name /tmp/model-pr-<PR_NUMBER>/.eval_results/eval.yaml .eval_results/eval.yaml \
+     --repo-type model \
+     --revision refs/pr/<PR_NUMBER> \
+     --commit-message "Update eval results metadata"
+   ```
+   This updates the existing PR on the Hub. See: [Managing PRs locally](https://huggingface.co/docs/hub/en/repositories-pull-requests-discussions).
+
+**Programmatic option:** use `huggingface_hub` to update files and create or update PRs from Python when needed.
+See: [Create or edit PRs programmatically](https://huggingface.co/docs/huggingface_hub/v1.3.3/en/guides/community#create-and-edit-a-discussion-or-pull-request-programmatically).
+
 # Core Workflows
 
 ## 1. Add Single Benchmark (Recommended)
@@ -108,7 +144,41 @@ uv run scripts/evaluation_manager.py add-eval \
 - `aa`: Query Artificial Analysis API (requires `AA_API_KEY`)
 - Manual: Extract from linked papers using `paper_search` MCP tool
 
-## 2. Batch Process Trending Models
+## 2. List Open Eval PRs
+
+Find all open PRs on HuggingFace that contain evaluation results (.eval_results/).
+
+```bash
+# Scan trending models for open eval PRs
+uv run scripts/list_eval_prs.py --limit 30 --verbose
+
+# Filter by PR author
+uv run scripts/list_eval_prs.py --user nielsr --pretty
+
+# Filter by model pattern
+uv run scripts/list_eval_prs.py --model "meta-llama/*"
+
+# Include merged PRs
+uv run scripts/list_eval_prs.py --limit 50 --include-merged
+```
+
+**Output JSON format:**
+```json
+[
+  {
+    "user": "nielsr",
+    "date": "2026-01-15T19:26:35+00:00",
+    "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+    "pr_num": 332,
+    "pr_title": "Add community evaluation results for GPQA, MMLU-PRO, GSM8K",
+    "pr_status": "open",
+    "dataset_id": "gpqa",
+    "eval_yaml_url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/blob/refs%2Fpr%2F332/.eval_results/gpqa.yaml"
+  }
+]
+```
+
+## 3. Batch Process Trending Models
 
 Process multiple models at once using the HuggingFace API.
 
@@ -181,7 +251,7 @@ Example output:
 
 **Note:** The automated script may miss scores in non-standard table formats. For comprehensive results, also use `hub_repo_details` with `include_readme: true` to manually inspect model cards for benchmark tables.
 
-## 3. Extract from README Tables
+## 4. Extract from README Tables
 
 For models with evaluation tables in their README:
 
@@ -201,7 +271,7 @@ uv run scripts/evaluation_manager.py extract-readme \
   --create-pr
 ```
 
-## 4. Extract from Papers
+## 5. Extract from Papers
 
 For models with linked papers on HuggingFace, use the HF MCP Server tools:
 
@@ -262,12 +332,15 @@ Results are stored as YAML files in `.eval_results/`:
 # .eval_results/hle.yaml
 - dataset:
     id: cais/hle              # Required: Hub Benchmark dataset ID
-    task_id: default          # Optional: specific task/leaderboard
+    task_id: default          # Required: task id from the dataset's eval.yaml
+    revision:                 # Optional: dataset revision (commit hash)
   value: 22.2                 # Required: metric value
+  verifyToken:                # Optional: cryptographic proof (Inspect + HF Jobs)
   date: "2026-01-14"          # Optional: ISO-8601 date
   source:                     # Optional: attribution
     url: https://artificialanalysis.ai
     name: Artificial Analysis
+    user: my-org              # Optional: HF username/org (ASK if unknown)
 ```
 
 **Minimal example:**
@@ -277,6 +350,8 @@ Results are stored as YAML files in `.eval_results/`:
     task_id: gpqa_diamond
   value: 0.412
 ```
+
+**Agent instruction:** always include `source.user` when the contributing user/org is known. If it is not known, ask for it before submitting the PR.
 
 **Result Badges:**
 | Badge | Condition |
@@ -301,11 +376,32 @@ Benchmarks are mapped via `examples/metric_mapping.json`:
 
 To add a new benchmark, update `examples/metric_mapping.json`.
 
+**Find available benchmark datasets on the Hub:**
+```bash
+hf datasets ls --filter "benchmark:eval-yaml"
+```
+
+---
+
+# Find Models With Eval Results
+
+Use the Hub CLI to list models that already publish `.eval_results/`:
+
+```bash
+hf models ls --filter "eval-results"
+```
+
 ---
 
 # Commands Reference
 
 ```bash
+# List all open PRs with eval results across HuggingFace
+uv run scripts/list_eval_prs.py --limit 30 --verbose
+uv run scripts/list_eval_prs.py --user nielsr --pretty
+uv run scripts/list_eval_prs.py --model "meta-llama/*" --pretty
+uv run scripts/list_eval_prs.py --limit 50 --include-merged
+
 # Check for existing PRs (ALWAYS do this first)
 uv run scripts/evaluation_manager.py get-prs --repo-id "model/name"
 

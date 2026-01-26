@@ -1,0 +1,191 @@
+{
+  "benchmark": "GSM8K",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "downloads",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-16T07:19:59.056134+00:00",
+  "results": [
+    {
+      "repo_id": "Qwen/Qwen2.5-3B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:19:59.621886+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:19:59.866958+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-0.6B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-0.6B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:00.122888+00:00"
+    },
+    {
+      "repo_id": "openai-community/gpt2",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai-community/gpt2",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:00.381511+00:00"
+    },
+    {
+      "repo_id": "openai/gpt-oss-20b",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai/gpt-oss-20b",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:00.629801+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-7B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:00.905437+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:01.362633+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-14B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:01.629092+00:00"
+    },
+    {
+      "repo_id": "dphn/dolphin-2.9.1-yi-1.5-34b",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/dphn/dolphin-2.9.1-yi-1.5-34b",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:02.092651+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-32B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:02.342085+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-8B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-8B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:02.599254+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-4B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:02.972718+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-1.7B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-1.7B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:03.229658+00:00"
+    },
+    {
+      "repo_id": "facebook/opt-125m",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/facebook/opt-125m",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:03.501660+00:00"
+    },
+    {
+      "repo_id": "openai/gpt-oss-120b",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai/gpt-oss-120b",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:03.753941+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-1B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:04.243278+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:04.506469+00:00"
+    },
+    {
+      "repo_id": "google/gemma-3-1b-it",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/gemma-3-1b-it",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:04.754456+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-Coder-0.5B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:05.248344+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "benchmark": "GSM8K",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "status": "not_found",
+      "timestamp": "2026-01-16T07:20:05.752768+00:00"
+    }
+  ]
+}

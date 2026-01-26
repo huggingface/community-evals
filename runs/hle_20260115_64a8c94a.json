@@ -1,0 +1,10 @@
+{
+  "benchmark": "HLE",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "downloads",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-15T10:14:28.130062+00:00",
+  "results": []
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark": "HLE",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-15T09:49:29.154374+00:00",
+  "results": [
+    {
+      "repo_id": "FutureMa/Eva-4B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/FutureMa/Eva-4B",
+      "status": "not_found",
+      "timestamp": "2026-01-15T09:49:30.706734+00:00"
+    }
+  ]
+}
