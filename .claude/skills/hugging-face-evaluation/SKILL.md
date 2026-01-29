@@ -110,41 +110,64 @@ See: [Create or edit PRs programmatically](https://huggingface.co/docs/huggingfa
 
 # Core Workflows
 
+## 1. Extract from Model Card (Preferred)
 
-
-## 1. Add Single Benchmark (Recommended)
-
-Add a specific benchmark score to a model from various sources.
+Extract evaluation results from README tables. **Use this source first** as it's authoritative.
 
 ```bash
-# Preview (default - prints YAML)
-uv run scripts/evaluation_manager.py add-eval \
-  --benchmark HLE \
-  --repo-id "moonshotai/Kimi-K2-Thinking"
+# Inspect tables (dry run)
+uv run scripts/extract_model_card.py --repo-id "org/model" --inspect
 
-# From Artificial Analysis
-uv run scripts/evaluation_manager.py add-eval \
-  --benchmark HLE \
-  --repo-id "model/name" \
-  --source aa
+# Extract from specific table (dry run - prints YAML)
+uv run scripts/extract_model_card.py --repo-id "org/model" --table 1
+
+# Extract specific benchmark only
+uv run scripts/extract_model_card.py --repo-id "org/model" --benchmark HLE
 
 # Create PR
-uv run scripts/evaluation_manager.py add-eval \
-  --benchmark HLE \
-  --repo-id "model/name" \
-  --create-pr
+uv run scripts/extract_model_card.py --repo-id "org/model" --table 1 --create-pr
 
 # Push directly (your own model)
-uv run scripts/evaluation_manager.py add-eval \
-  --benchmark HLE \
-  --repo-id "your-username/your-model" \
-  --apply
+uv run scripts/extract_model_card.py --repo-id "your-username/your-model" --table 1 --apply
 ```
 
-**Sources:**
-- `model_card` (default): Extract from README tables (use `hub_repo_details` MCP tool)
-- `aa`: Query Artificial Analysis API (requires `AA_API_KEY`)
-- Manual: Extract from linked papers using `paper_search` MCP tool
+**Options:**
+- `--inspect`: List all tables in README (always run this first)
+- `--table N`: Select table by number (1-indexed)
+- `--benchmark NAME`: Extract only a specific benchmark
+- `--model-column-index N`: Select column for model scores
+- `--source-user USERNAME`: Add HF username/org for attribution
+
+**Test extraction locally:**
+```bash
+uv run scripts/test_extraction.py
+```
+
+## 2. Import from Artificial Analysis
+
+Import evaluation results from the Artificial Analysis API. **Use as fallback** when model card has no scores.
+
+```bash
+# Look up specific benchmark (dry run - prints YAML)
+AA_API_KEY=... uv run scripts/import_aa.py --repo-id "org/model" --benchmark HLE
+
+# Import all available benchmarks
+AA_API_KEY=... uv run scripts/import_aa.py --repo-id "org/model" --all
+
+# Create PR
+AA_API_KEY=... uv run scripts/import_aa.py --repo-id "org/model" --benchmark GPQA --create-pr
+
+# Provide value manually (skip AA lookup)
+uv run scripts/import_aa.py --repo-id "org/model" --benchmark HLE --value 22.5 --create-pr
+```
+
+**Options:**
+- `--benchmark NAME`: Specific benchmark to look up
+- `--all`: Import all available benchmarks from AA
+- `--value SCORE`: Manually provide score (skips lookup)
+- `--source-user USERNAME`: Add HF username/org for attribution
+
+**Source priority:** model card → papers → Artificial Analysis
 
 ## 2. List Open Eval PRs
 
@@ -382,10 +405,10 @@ Benchmarks are mapped via `examples/metric_mapping.json`:
 
 | Benchmark | Hub Dataset ID | Task ID |
 |-----------|---------------|---------|
-| HLE | cais/hle | default |
+| HLE | cais/hle | hle |
 | GPQA | Idavidrein/gpqa | gpqa_diamond |
-| MMLU-Pro | TIGER-Lab/MMLU-Pro | - |
-| GSM8K | openai/gsm8k | - |
+| MMLU-Pro | TIGER-Lab/MMLU-Pro | mmlu_pro |
+| GSM8K | openai/gsm8k | gsm8k |
 
 To add a new benchmark, update `examples/metric_mapping.json`.
 
@@ -434,43 +457,63 @@ Pattern:
 # Commands Reference
 
 ```bash
-# List all open PRs with eval results across HuggingFace
-uv run scripts/list_eval_prs.py --limit 30 --verbose
-uv run scripts/list_eval_prs.py --user nielsr --pretty
-uv run scripts/list_eval_prs.py --model "meta-llama/*" --pretty
-uv run scripts/list_eval_prs.py --limit 50 --include-merged
+# ============================================================
+# Model Card Extraction (extract_model_card.py)
+# ============================================================
 
-# Get top AA models (use model_card → papers → AA priority after)
+# Inspect tables in README (always run first)
+uv run scripts/extract_model_card.py --repo-id "model/name" --inspect
+
+# Extract from specific table (dry run)
+uv run scripts/extract_model_card.py --repo-id "model/name" --table 1
+
+# Extract specific benchmark
+uv run scripts/extract_model_card.py --repo-id "model/name" --benchmark HLE
+
+# Create PR
+uv run scripts/extract_model_card.py --repo-id "model/name" --table 1 --create-pr
+
+# Test extraction locally
+uv run scripts/test_extraction.py
+
+# ============================================================
+# Artificial Analysis Import (import_aa.py)
+# ============================================================
+
+# Look up specific benchmark (dry run)
+AA_API_KEY=... uv run scripts/import_aa.py --repo-id "model/name" --benchmark HLE
+
+# Import all available benchmarks
+AA_API_KEY=... uv run scripts/import_aa.py --repo-id "model/name" --all
+
+# Create PR
+AA_API_KEY=... uv run scripts/import_aa.py --repo-id "model/name" --benchmark GPQA --create-pr
+
+# Get top AA models
 AA_API_KEY=... uv run scripts/aa_top_models_prs.py --limit 10 --pretty
+
+# ============================================================
+# PR Management
+# ============================================================
 
 # Check for existing PRs (ALWAYS do this first)
 uv run scripts/evaluation_manager.py get-prs --repo-id "model/name"
 
-# Add single benchmark
-uv run scripts/evaluation_manager.py add-eval \
-  --benchmark HLE \
-  --repo-id "model/name" \
-  [--source model_card|aa] \
-  [--value 84.5] \
-  [--apply | --create-pr]
+# List open PRs with eval results across HuggingFace
+uv run scripts/list_eval_prs.py --limit 30 --verbose
+uv run scripts/list_eval_prs.py --user nielsr --pretty
+uv run scripts/list_eval_prs.py --model "meta-llama/*" --pretty
+
+# ============================================================
+# Batch Processing (legacy evaluation_manager.py)
+# ============================================================
 
 # Batch process trending models
 uv run scripts/batch_eval_prs.py \
   --limit N \
   --benchmark NAME \
   [--source model_card|aa] \
-  [--sort trending|downloads|likes] \
-  [--pipeline-tag text-generation] \
   [--dry-run]
-
-# Inspect README tables
-uv run scripts/evaluation_manager.py inspect-tables --repo-id "model/name"
-
-# Extract from README table
-uv run scripts/evaluation_manager.py extract-readme \
-  --repo-id "model/name" \
-  --table N \
-  [--apply | --create-pr]
 
 # Extract from linked papers (use HF MCP Server tools first)
 # See references/hf_papers_extraction.md for MCP-based workflow

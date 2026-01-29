@@ -1,18 +1,27 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "markdown-it-py>=3.0.0",
+#     "pyyaml>=6.0.0",
+# ]
+# ///
 """
-Test script for evaluation extraction functionality.
+Test script for model card extraction functionality.
 
-This script demonstrates the table extraction capabilities without
-requiring HF tokens or making actual API calls.
+Demonstrates table extraction capabilities without requiring HF tokens.
+
+Usage:
+  uv run scripts/test_extraction.py
 """
 
 import yaml
 
-from evaluation_manager import (
-    extract_tables_from_markdown,
-    parse_markdown_table,
+from extract_model_card import (
+    extract_tables_with_parser,
     is_evaluation_table,
-    extract_metrics_from_table
+    extract_metrics_from_table,
+    convert_to_eval_results_format,
 )
 
 # Sample README content with various table formats
@@ -28,6 +37,8 @@ Here are the benchmark results:
 | MMLU      | 85.2  |
 | HumanEval | 72.5  |
 | GSM8K     | 91.3  |
+| GPQA      | 68.4  |
+| HLE       | 22.1  |
 
 ### Detailed Breakdown
 
@@ -59,55 +70,37 @@ def test_table_extraction():
     print("TEST 1: Table Extraction")
     print("=" * 60)
 
-    tables = extract_tables_from_markdown(SAMPLE_README)
+    tables = extract_tables_with_parser(SAMPLE_README)
     print(f"Found {len(tables)} tables in the sample README\n")
 
     for i, table in enumerate(tables, 1):
+        headers = table.get("headers", [])
+        rows = table.get("rows", [])
         print(f"Table {i}:")
-        print(table[:100] + "..." if len(table) > 100 else table)
+        print(f"  Headers: {headers}")
+        print(f"  Rows: {len(rows)}")
         print()
 
     return tables
 
 
-def test_table_parsing(tables):
-    """Test table parsing."""
-    print("\n" + "=" * 60)
-    print("TEST 2: Table Parsing")
-    print("=" * 60)
-
-    parsed_tables = []
-    for i, table in enumerate(tables, 1):
-        print(f"\nParsing Table {i}:")
-        header, rows = parse_markdown_table(table)
-
-        print(f"  Header: {header}")
-        print(f"  Rows: {len(rows)}")
-        for j, row in enumerate(rows[:3], 1):  # Show first 3 rows
-            print(f"    Row {j}: {row}")
-        if len(rows) > 3:
-            print(f"    ... and {len(rows) - 3} more rows")
-
-        parsed_tables.append((header, rows))
-
-    return parsed_tables
-
-
-def test_evaluation_detection(parsed_tables):
+def test_evaluation_detection(tables):
     """Test evaluation table detection."""
     print("\n" + "=" * 60)
-    print("TEST 3: Evaluation Table Detection")
+    print("TEST 2: Evaluation Table Detection")
     print("=" * 60)
 
     eval_tables = []
-    for i, (header, rows) in enumerate(parsed_tables, 1):
+    for i, table in enumerate(tables, 1):
+        header = table.get("headers", [])
+        rows = table.get("rows", [])
         is_eval = is_evaluation_table(header, rows)
         status = "✓ IS" if is_eval else "✗ NOT"
         print(f"\nTable {i}: {status} an evaluation table")
         print(f"  Header: {header}")
 
         if is_eval:
-            eval_tables.append((header, rows))
+            eval_tables.append(table)
 
     print(f"\nFound {len(eval_tables)} evaluation tables")
     return eval_tables
@@ -116,13 +109,15 @@ def test_evaluation_detection(parsed_tables):
 def test_metric_extraction(eval_tables):
     """Test metric extraction."""
     print("\n" + "=" * 60)
-    print("TEST 4: Metric Extraction")
+    print("TEST 3: Metric Extraction")
     print("=" * 60)
 
     all_metrics = []
-    for i, (header, rows) in enumerate(eval_tables, 1):
+    for i, table in enumerate(eval_tables, 1):
+        header = table.get("headers", [])
+        rows = table.get("rows", [])
         print(f"\nExtracting metrics from table {i}:")
-        metrics = extract_metrics_from_table(header, rows, table_format="auto")
+        metrics = extract_metrics_from_table(header, rows)
 
         print(f"  Extracted {len(metrics)} metrics:")
         for metric in metrics:
@@ -133,52 +128,37 @@ def test_metric_extraction(eval_tables):
     return all_metrics
 
 
-def test_model_index_format(metrics):
-    """Test model-index format generation."""
+def test_eval_results_format(metrics):
+    """Test .eval_results/ format generation."""
     print("\n" + "=" * 60)
-    print("TEST 5: Model-Index Format")
+    print("TEST 4: .eval_results/ Format")
     print("=" * 60)
 
-    model_index = {
-        "model-index": [
-            {
-                "name": "test-model",
-                "results": [
-                    {
-                        "task": {"type": "text-generation"},
-                        "dataset": {
-                            "name": "Benchmarks",
-                            "type": "benchmark"
-                        },
-                        "metrics": metrics,
-                        "source": {
-                            "name": "Model README",
-                            "url": "https://huggingface.co/test/model"
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+    eval_results = convert_to_eval_results_format(
+        metrics=metrics,
+        source_url="https://huggingface.co/test/model",
+        source_name="Model Card",
+    )
 
-    print("\nGenerated model-index structure:")
-    print(yaml.dump(model_index, sort_keys=False, default_flow_style=False))
+    print("\nGenerated .eval_results/ structure:")
+    print(yaml.dump(eval_results, sort_keys=False, default_flow_style=False))
+
+    return eval_results
 
 
 def main():
     """Run all tests."""
     print("\n" + "=" * 60)
-    print("EVALUATION EXTRACTION TEST SUITE")
+    print("MODEL CARD EXTRACTION TEST SUITE")
     print("=" * 60)
     print("\nThis test demonstrates the table extraction capabilities")
     print("without requiring API access or tokens.\n")
 
     # Run tests
     tables = test_table_extraction()
-    parsed_tables = test_table_parsing(tables)
-    eval_tables = test_evaluation_detection(parsed_tables)
+    eval_tables = test_evaluation_detection(tables)
     metrics = test_metric_extraction(eval_tables)
-    test_model_index_format(metrics)
+    eval_results = test_eval_results_format(metrics)
 
     # Summary
     print("\n" + "=" * 60)
@@ -187,7 +167,7 @@ def main():
     print(f"✓ Found {len(tables)} total tables")
     print(f"✓ Identified {len(eval_tables)} evaluation tables")
     print(f"✓ Extracted {len(metrics)} metrics")
-    print("✓ Generated model-index format successfully")
+    print(f"✓ Converted {len(eval_results)} to .eval_results/ format")
     print("\n" + "=" * 60)
     print("All tests completed! The extraction logic is working correctly.")
     print("=" * 60 + "\n")

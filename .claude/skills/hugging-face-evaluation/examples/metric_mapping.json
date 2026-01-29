@@ -7,7 +7,7 @@
   },
   "MMLU-Pro": {
     "dataset_id": "TIGER-Lab/MMLU-Pro",
-    "task_id": "default",
+    "task_id": "mmlu_pro",
     "aliases": ["mmlu_pro", "mmlu-pro"]
   },
   "MMLU-Redux": {
