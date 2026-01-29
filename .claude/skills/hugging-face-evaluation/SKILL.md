@@ -110,6 +110,8 @@ See: [Create or edit PRs programmatically](https://huggingface.co/docs/huggingfa
 
 # Core Workflows
 
+
+
 ## 1. Add Single Benchmark (Recommended)
 
 Add a specific benchmark score to a model from various sources.
@@ -251,7 +253,18 @@ Example output:
 
 **Note:** The automated script may miss scores in non-standard table formats. For comprehensive results, also use `hub_repo_details` with `include_readme: true` to manually inspect model cards for benchmark tables.
 
-## 4. Extract from README Tables
+## 4. Get Top AA Models
+
+Fetch the top 10 models from the Artificial Analysis index. Use the existing instructions in this skill to match Hub repos, check non-AA sources first, and propose PRs in this priority: **model card → papers → Artificial Analysis**.
+
+```bash
+AA_API_KEY=... uv run scripts/aa_top_models_prs.py --limit 10 --pretty
+```
+
+**Output fields:**
+- `aa_name`, `aa_slug`, `aa_creator`, `aa_index_score`
+
+## 5. Extract from README Tables
 
 For models with evaluation tables in their README:
 
@@ -271,7 +284,7 @@ uv run scripts/evaluation_manager.py extract-readme \
   --create-pr
 ```
 
-## 5. Extract from Papers
+## 6. Extract from Papers
 
 For models with linked papers on HuggingFace, use the HF MCP Server tools:
 
@@ -393,6 +406,31 @@ hf models ls --filter "eval-results"
 
 ---
 
+# Get Eval Results From Hub APIs
+
+Use Hub REST endpoints to fetch aggregated benchmark leaderboards and per-model eval results.
+
+**Benchmark leaderboard (dataset repo):**
+```
+https://huggingface.co/api/datasets/cais/hle/leaderboard
+```
+Pattern:
+```
+/api/:repoType(datasets)/:namespace/:repo/leaderboard
+```
+
+**Model eval results (model repo):**
+```
+https://huggingface.co/api/models/zai-org/GLM-4.7?expand[]=evalResults
+```
+
+Pattern:
+```
+/api/:repoType(models)/:namespace/:repo?expand[]=evalResults
+```
+
+---
+
 # Commands Reference
 
 ```bash
@@ -401,6 +439,9 @@ uv run scripts/list_eval_prs.py --limit 30 --verbose
 uv run scripts/list_eval_prs.py --user nielsr --pretty
 uv run scripts/list_eval_prs.py --model "meta-llama/*" --pretty
 uv run scripts/list_eval_prs.py --limit 50 --include-merged
+
+# Get top AA models (use model_card → papers → AA priority after)
+AA_API_KEY=... uv run scripts/aa_top_models_prs.py --limit 10 --pretty
 
 # Check for existing PRs (ALWAYS do this first)
 uv run scripts/evaluation_manager.py get-prs --repo-id "model/name"
