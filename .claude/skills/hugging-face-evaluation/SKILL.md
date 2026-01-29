@@ -513,20 +513,6 @@ uv run scripts/evaluation_manager.py add-eval --help
 
 ---
 
-# Advanced: Run Custom Evaluations
-
-For running evaluations (not just importing existing scores), see the vLLM and inspect-ai scripts in `scripts/`:
-
-- `inspect_eval_uv.py` - Run inspect-ai evaluations via HF Jobs
-- `lighteval_vllm_uv.py` - Run lighteval with vLLM backend
-- `inspect_vllm_uv.py` - Run inspect-ai with vLLM backend
-- `run_eval_job.py` - Helper for submitting HF Jobs
-- `run_vllm_eval_job.py` - Helper for vLLM job submission
-
-These require GPU hardware and are for generating new evaluation results, not importing existing ones.
-
----
-
 # Best Practices
 
 1. **Always check for existing PRs** before creating new ones
