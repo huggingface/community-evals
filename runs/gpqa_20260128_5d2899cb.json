@@ -1,0 +1,218 @@
+{
+  "benchmark": "GPQA",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 50,
+  "dry_run": true,
+  "created": "2026-01-28T08:25:35.298122+00:00",
+  "results": [
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Preview",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Preview",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:00.417498+00:00"
+    },
+    {
+      "repo_id": "GadflyII/GLM-4.7-Flash-NVFP4",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/GadflyII/GLM-4.7-Flash-NVFP4",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:03.003659+00:00"
+    },
+    {
+      "repo_id": "nota-ai/Solar-Open-100B-Nota-FP8",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nota-ai/Solar-Open-100B-Nota-FP8",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:04.512022+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Thinking-2601",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Thinking-2601",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:07.895916+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-TrueBase",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-TrueBase",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:11.672957+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:13.241037+00:00"
+    },
+    {
+      "repo_id": "cyankiwi/GLM-4.7-Flash-AWQ-4bit",
+      "benchmark": "GPQA",
+      "value": 75.2,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cyankiwi/GLM-4.7-Flash-AWQ-4bit",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:27:15.543107+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Thinking-ZigZag",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Thinking-ZigZag",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:18.890378+00:00"
+    },
+    {
+      "repo_id": "google/functiongemma-270m-it",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/functiongemma-270m-it",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:19.241291+00:00"
+    },
+    {
+      "repo_id": "google/gemma-3n-E2B-it-litert-lm",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/gemma-3n-E2B-it-litert-lm",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:19.949638+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Base",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Base",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:21.822645+00:00"
+    },
+    {
+      "repo_id": "mlx-community/GLM-4.7-Flash-4bit",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/mlx-community/GLM-4.7-Flash-4bit",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:23.956800+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-R1",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:24.521794+00:00"
+    },
+    {
+      "repo_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "benchmark": "GPQA",
+      "value": 73.0,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:27:25.725639+00:00"
+    },
+    {
+      "repo_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+      "benchmark": "GPQA",
+      "value": 73.0,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:27:26.996896+00:00"
+    },
+    {
+      "repo_id": "XiaomiMiMo/MiMo-V2-Flash",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:28.785225+00:00"
+    },
+    {
+      "repo_id": "bartowski/zai-org_GLM-4.7-Flash-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/bartowski/zai-org_GLM-4.7-Flash-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:30.285087+00:00"
+    },
+    {
+      "repo_id": "DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:32.591890+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:34.018913+00:00"
+    },
+    {
+      "repo_id": "janhq/Jan-v3-4B-base-instruct",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/janhq/Jan-v3-4B-base-instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:37.011217+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Preview-FP8",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Preview-FP8",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:38.902096+00:00"
+    },
+    {
+      "repo_id": "salakash/AskBuddyX",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/salakash/AskBuddyX",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:40.488641+00:00"
+    },
+    {
+      "repo_id": "unsloth/MiniMax-M2.1-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/MiniMax-M2.1-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:27:41.721871+00:00"
+    }
+  ]
+}
