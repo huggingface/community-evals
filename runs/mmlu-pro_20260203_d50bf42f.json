@@ -1,0 +1,362 @@
+{
+  "benchmark": "MMLU-Pro",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 50,
+  "dry_run": true,
+  "created": "2026-02-03T12:57:21.205606+00:00",
+  "results": [
+    {
+      "repo_id": "stepfun-ai/Step-3.5-Flash",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:21.938423+00:00"
+    },
+    {
+      "repo_id": "zai-org/GLM-4.7-Flash",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:22.538509+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Lite",
+      "benchmark": "MMLU-Pro",
+      "value": 78.95,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Lite",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:22.800613+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Preview",
+      "benchmark": "MMLU-Pro",
+      "value": 75.2,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Preview",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:23.052294+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-Flash-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:23.573367+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Thinking",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:23.824123+00:00"
+    },
+    {
+      "repo_id": "Alibaba-Apsara/DASD-4B-Thinking",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Alibaba-Apsara/DASD-4B-Thinking",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:24.340269+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-TrueBase",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-TrueBase",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:24.896153+00:00"
+    },
+    {
+      "repo_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+      "benchmark": "MMLU-Pro",
+      "value": 78.3,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:25.186602+00:00"
+    },
+    {
+      "repo_id": "ByteDance-Seed/Stable-DiffCoder-8B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/ByteDance-Seed/Stable-DiffCoder-8B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:25.682692+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Base",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Base",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:26.163675+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:26.933138+00:00"
+    },
+    {
+      "repo_id": "janhq/Jan-v3-4B-base-instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/janhq/Jan-v3-4B-base-instruct",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:27.810903+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-V3.2",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:28.120221+00:00"
+    },
+    {
+      "repo_id": "stepfun-ai/Step-3.5-Flash-FP8",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash-FP8",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:28.368251+00:00"
+    },
+    {
+      "repo_id": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:28.622054+00:00"
+    },
+    {
+      "repo_id": "janhq/Jan-v3-4B-base-instruct-gguf",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/janhq/Jan-v3-4B-base-instruct-gguf",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:28.877875+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Preview-FP8",
+      "benchmark": "MMLU-Pro",
+      "value": 75.2,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Preview-FP8",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:29.436460+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "benchmark": "MMLU-Pro",
+      "value": 69.1,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:30.034039+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:30.285415+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-R1",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:30.780188+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Thinking-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:31.310525+00:00"
+    },
+    {
+      "repo_id": "cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:31.825939+00:00"
+    },
+    {
+      "repo_id": "microsoft/bitnet-b1.58-2B-4T",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:32.084902+00:00"
+    },
+    {
+      "repo_id": "mlx-community/Kimi-K2.5",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/mlx-community/Kimi-K2.5",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:32.356625+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-3B-Instruct",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:32.611429+00:00"
+    },
+    {
+      "repo_id": "cerebras/MiniMax-M2.1-REAP-139B-A10B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cerebras/MiniMax-M2.1-REAP-139B-A10B",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:32.885240+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-8B-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-8B-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:33.123115+00:00"
+    },
+    {
+      "repo_id": "moonshotai/Kimi-K2-Thinking",
+      "benchmark": "MMLU-Pro",
+      "value": 84.6,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Thinking",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:33.375493+00:00"
+    },
+    {
+      "repo_id": "GadflyII/GLM-4.7-Flash-NVFP4",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/GadflyII/GLM-4.7-Flash-NVFP4",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:33.958222+00:00"
+    },
+    {
+      "repo_id": "google/gemma-3n-E2B-it-litert-lm",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/gemma-3n-E2B-it-litert-lm",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:34.215331+00:00"
+    },
+    {
+      "repo_id": "DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:34.938400+00:00"
+    },
+    {
+      "repo_id": "huihui-ai/Huihui-GLM-4.7-Flash-abliterated",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/huihui-ai/Huihui-GLM-4.7-Flash-abliterated",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:35.422530+00:00"
+    },
+    {
+      "repo_id": "nota-ai/Solar-Open-100B-NotaMoEQuant-Int4",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nota-ai/Solar-Open-100B-NotaMoEQuant-Int4",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:35.922171+00:00"
+    },
+    {
+      "repo_id": "google/functiongemma-270m-it",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/functiongemma-270m-it",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:36.170314+00:00"
+    },
+    {
+      "repo_id": "ruv/ruvltra-claude-code",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/ruv/ruvltra-claude-code",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:36.441944+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-1B",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.2-1B",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:36.737627+00:00"
+    },
+    {
+      "repo_id": "unsloth/gpt-oss-20b-GGUF",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/gpt-oss-20b-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:36.991726+00:00"
+    },
+    {
+      "repo_id": "TeichAI/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill",
+      "benchmark": "MMLU-Pro",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/TeichAI/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:37.273889+00:00"
+    }
+  ]
+}

@@ -49,7 +49,7 @@ HF_API_BASE = "https://huggingface.co/api"
 
 
 # ---------------------------------------------------------------------------
-# State helpers
+# State helpers (local)
 # ---------------------------------------------------------------------------
 
 
@@ -63,6 +63,88 @@ def load_state() -> dict[str, Any]:
 def save_state(state: dict[str, Any]) -> None:
     with open(STATE_FILE, "w") as f:
         json.dump(state, f, indent=2)
+
+
+# ---------------------------------------------------------------------------
+# Hub state helpers
+# ---------------------------------------------------------------------------
+
+
+def load_state_from_hub(dataset_id: str, hf_token: Optional[str]) -> dict[str, Any]:
+    """Load poll_state.json from the Hub dataset repo, falling back to {} if absent."""
+    try:
+        from huggingface_hub import hf_hub_download
+        from huggingface_hub.utils import EntryNotFoundError, RepositoryNotFoundError
+
+        path = hf_hub_download(
+            repo_id=dataset_id,
+            filename="poll_state.json",
+            repo_type="dataset",
+            token=hf_token,
+        )
+        with open(path) as f:
+            return json.load(f)
+    except Exception as exc:
+        print(f"  No existing state on Hub (will start fresh): {exc}", file=sys.stderr)
+        return {}
+
+
+def save_state_to_hub(dataset_id: str, state: dict[str, Any], hf_token: Optional[str]) -> None:
+    """Push poll_state.json back to the Hub dataset repo."""
+    from huggingface_hub import HfApi
+
+    api = HfApi()
+    content = json.dumps(state, indent=2).encode()
+    api.upload_file(
+        path_or_fileobj=content,
+        path_in_repo="poll_state.json",
+        repo_id=dataset_id,
+        repo_type="dataset",
+        token=hf_token,
+        commit_message="chore: update poll state",
+    )
+    print(f"Hub state saved → {dataset_id}/poll_state.json")
+
+
+# ---------------------------------------------------------------------------
+# Hub results push
+# ---------------------------------------------------------------------------
+
+
+def push_poll_results_to_hub(
+    dataset_id: str,
+    results: list[dict[str, Any]],
+    hf_token: Optional[str],
+    dry_run: bool,
+) -> None:
+    """Push timestamped + latest poll results JSON to a Hub dataset repo."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "result_count": len(results),
+        "results": results,
+    }
+    content = json.dumps(payload, indent=2, ensure_ascii=False).encode()
+
+    paths = [f"poll_results/{today}.json", "poll_results/latest.json"]
+
+    if dry_run:
+        print(f"[dry-run] Would push to {dataset_id}: {', '.join(paths)}")
+        return
+
+    from huggingface_hub import HfApi
+
+    api = HfApi()
+    for path in paths:
+        api.upload_file(
+            path_or_fileobj=content,
+            path_in_repo=path,
+            repo_id=dataset_id,
+            repo_type="dataset",
+            token=hf_token,
+            commit_message=f"add poll results {today}",
+        )
+    print(f"Pushed results to {dataset_id}: {', '.join(paths)}")
 
 
 # ---------------------------------------------------------------------------
@@ -307,6 +389,14 @@ def main() -> None:
         metavar="URL",
         help="Slack incoming webhook URL to POST results summary to.",
     )
+    parser.add_argument(
+        "--dataset-id",
+        metavar="REPO_ID",
+        help="Hub dataset repo to push results to and store state in "
+             "(e.g. 'burtenshaw/community-evals-monitoring'). "
+             "When set, poll_state.json is read from / written to the Hub "
+             "instead of the local filesystem.",
+    )
     args = parser.parse_args()
 
     # Load env
@@ -322,8 +412,11 @@ def main() -> None:
     if not hf_token:
         print("Warning: HF_TOKEN not set; requests will be unauthenticated.", file=sys.stderr)
 
-    # Resolve since_dt
-    state = load_state()
+    # Resolve since_dt — load state from Hub if --dataset-id provided, else local
+    if args.dataset_id:
+        state = load_state_from_hub(args.dataset_id, hf_token)
+    else:
+        state = load_state()
 
     if args.since:
         since_dt = datetime.fromisoformat(args.since).replace(tzinfo=timezone.utc)
@@ -360,13 +453,21 @@ def main() -> None:
         if ok:
             print("Slack notification sent.")
 
+    # Push results to Hub dataset if --dataset-id provided
+    if args.dataset_id:
+        push_poll_results_to_hub(args.dataset_id, all_new_results, hf_token, args.dry_run)
+
     # Persist state (unless dry-run)
     if not args.dry_run:
         state["last_run"] = datetime.now(timezone.utc).isoformat()
         state["seen_prs"] = sorted(seen_prs)
-        save_state(state)
+        if args.dataset_id:
+            save_state_to_hub(args.dataset_id, state, hf_token)
+        else:
+            save_state(state)
         new_seen = len(seen_prs) - original_seen_count
-        print(f"\nState updated: {new_seen} new PRs recorded → {STATE_FILE}")
+        state_location = args.dataset_id or str(STATE_FILE)
+        print(f"\nState updated: {new_seen} new PRs recorded → {state_location}")
     else:
         print("\n[dry-run] State not updated.")
 

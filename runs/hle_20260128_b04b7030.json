@@ -1,0 +1,326 @@
+{
+  "benchmark": "HLE",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 50,
+  "dry_run": true,
+  "created": "2026-01-28T08:54:03.726984+00:00",
+  "results": [
+    {
+      "repo_id": "zai-org/GLM-4.7-Flash",
+      "benchmark": "HLE",
+      "value": 14.4,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:05.184932+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-Flash-GGUF",
+      "benchmark": "HLE",
+      "value": 14.4,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:05.670885+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Thinking",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:06.200999+00:00"
+    },
+    {
+      "repo_id": "Alibaba-Apsara/DASD-4B-Thinking",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Alibaba-Apsara/DASD-4B-Thinking",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:07.248473+00:00"
+    },
+    {
+      "repo_id": "ByteDance-Seed/Stable-DiffCoder-8B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/ByteDance-Seed/Stable-DiffCoder-8B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:07.743279+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:08.309104+00:00"
+    },
+    {
+      "repo_id": "microsoft/OptiMind-SFT",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/microsoft/OptiMind-SFT",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:09.515492+00:00"
+    },
+    {
+      "repo_id": "huihui-ai/Huihui-GLM-4.7-Flash-abliterated",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/huihui-ai/Huihui-GLM-4.7-Flash-abliterated",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:10.761611+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-V3.2",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:11.331752+00:00"
+    },
+    {
+      "repo_id": "cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:13.677947+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Preview",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Preview",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:17.243407+00:00"
+    },
+    {
+      "repo_id": "GadflyII/GLM-4.7-Flash-NVFP4",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/GadflyII/GLM-4.7-Flash-NVFP4",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:17.863276+00:00"
+    },
+    {
+      "repo_id": "nota-ai/Solar-Open-100B-NotaMoEQuant-Int4",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nota-ai/Solar-Open-100B-NotaMoEQuant-Int4",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:18.372909+00:00"
+    },
+    {
+      "repo_id": "nota-ai/Solar-Open-100B-Nota-FP8",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nota-ai/Solar-Open-100B-Nota-FP8",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:18.918144+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:19.728350+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Thinking-2601",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Thinking-2601",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:20.303427+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-TrueBase",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-TrueBase",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:21.403369+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Thinking-GGUF",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:21.885905+00:00"
+    },
+    {
+      "repo_id": "cyankiwi/GLM-4.7-Flash-AWQ-4bit",
+      "benchmark": "HLE",
+      "value": 14.4,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cyankiwi/GLM-4.7-Flash-AWQ-4bit",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:22.475458+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Thinking-ZigZag",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Thinking-ZigZag",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:23.020369+00:00"
+    },
+    {
+      "repo_id": "google/functiongemma-270m-it",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/functiongemma-270m-it",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:23.326716+00:00"
+    },
+    {
+      "repo_id": "google/gemma-3n-E2B-it-litert-lm",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/google/gemma-3n-E2B-it-litert-lm",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:23.771043+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Base",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Base",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:24.365620+00:00"
+    },
+    {
+      "repo_id": "mlx-community/GLM-4.7-Flash-4bit",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/mlx-community/GLM-4.7-Flash-4bit",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:24.930456+00:00"
+    },
+    {
+      "repo_id": "DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/DavidAU/GLM-4.7-Flash-Uncensored-Heretic-NEO-CODE-Imatrix-MAX-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:25.746329+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:26.172095+00:00"
+    },
+    {
+      "repo_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "benchmark": "HLE",
+      "value": 10.6,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:26.926605+00:00"
+    },
+    {
+      "repo_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+      "benchmark": "HLE",
+      "value": 10.2,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:28.045670+00:00"
+    },
+    {
+      "repo_id": "XiaomiMiMo/MiMo-V2-Flash",
+      "benchmark": "HLE",
+      "value": 22.1,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:29.157875+00:00"
+    },
+    {
+      "repo_id": "bartowski/zai-org_GLM-4.7-Flash-GGUF",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/bartowski/zai-org_GLM-4.7-Flash-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:29.795425+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-GGUF",
+      "benchmark": "HLE",
+      "value": 24.8,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-GGUF",
+      "status": "dry_run",
+      "timestamp": "2026-01-28T08:54:30.330285+00:00"
+    },
+    {
+      "repo_id": "janhq/Jan-v3-4B-base-instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/janhq/Jan-v3-4B-base-instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:30.925968+00:00"
+    },
+    {
+      "repo_id": "arcee-ai/Trinity-Large-Preview-FP8",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/arcee-ai/Trinity-Large-Preview-FP8",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:31.628052+00:00"
+    },
+    {
+      "repo_id": "salakash/AskBuddyX",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/salakash/AskBuddyX",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:32.462223+00:00"
+    },
+    {
+      "repo_id": "unsloth/MiniMax-M2.1-GGUF",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/MiniMax-M2.1-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:33.029213+00:00"
+    }
+  ]
+}

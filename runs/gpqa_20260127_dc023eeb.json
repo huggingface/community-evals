@@ -1,0 +1,38 @@
+{
+  "benchmark": "GPQA",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "downloads",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-27T13:40:24.947108+00:00",
+  "results": [
+    {
+      "repo_id": "Qwen/Qwen3-4B-Instruct-2507",
+      "benchmark": "GPQA",
+      "value": 54.8,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+      "status": "dry_run",
+      "timestamp": "2026-01-27T13:41:49.120311+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-1B",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.2-1B",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:41:49.444859+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.1-8B",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.1-8B",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:41:49.769344+00:00"
+    }
+  ]
+}

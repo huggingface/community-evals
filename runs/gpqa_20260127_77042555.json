@@ -1,0 +1,119 @@
+{
+  "benchmark": "GPQA",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 20,
+  "dry_run": true,
+  "created": "2026-01-27T13:38:39.203328+00:00",
+  "results": [
+    {
+      "repo_id": "zai-org/GLM-4.7-Flash",
+      "benchmark": "GPQA",
+      "value": 75.2,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "status": "dry_run",
+      "timestamp": "2026-01-27T13:40:02.612218+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-Flash-GGUF",
+      "benchmark": "GPQA",
+      "value": 75.2,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-Flash-GGUF",
+      "status": "dry_run",
+      "timestamp": "2026-01-27T13:40:04.194102+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Thinking",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:05.835936+00:00"
+    },
+    {
+      "repo_id": "Alibaba-Apsara/DASD-4B-Thinking",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Alibaba-Apsara/DASD-4B-Thinking",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:07.665614+00:00"
+    },
+    {
+      "repo_id": "unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/GLM-4.7-Flash-REAP-23B-A3B-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:09.418255+00:00"
+    },
+    {
+      "repo_id": "ByteDance-Seed/Stable-DiffCoder-8B-Instruct",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/ByteDance-Seed/Stable-DiffCoder-8B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:10.683046+00:00"
+    },
+    {
+      "repo_id": "microsoft/OptiMind-SFT",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/microsoft/OptiMind-SFT",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:12.573161+00:00"
+    },
+    {
+      "repo_id": "huihui-ai/Huihui-GLM-4.7-Flash-abliterated",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/huihui-ai/Huihui-GLM-4.7-Flash-abliterated",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:14.633863+00:00"
+    },
+    {
+      "repo_id": "deepseek-ai/DeepSeek-V3.2",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:17.951750+00:00"
+    },
+    {
+      "repo_id": "cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cerebras/GLM-4.7-Flash-REAP-23B-A3B",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:20.181539+00:00"
+    },
+    {
+      "repo_id": "nota-ai/Solar-Open-100B-NotaMoEQuant-Int4",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nota-ai/Solar-Open-100B-NotaMoEQuant-Int4",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:21.654341+00:00"
+    },
+    {
+      "repo_id": "LiquidAI/LFM2.5-1.2B-Thinking-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Thinking-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-01-27T13:40:22.472640+00:00"
+    }
+  ]
+}

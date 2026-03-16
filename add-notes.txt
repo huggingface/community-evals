@@ -1,0 +1,557 @@
+
+ ▐▛███▜▌   Claude Code v2.1.27
+▝▜█████▛▘  Opus 4.5 · Claude Max
+  ▘▘ ▝▝    ~/code/community-evals
+
+❯ list all open eval prs by user burtenshaw 
+
+⏺ Bash(gh pr list --author burtenshaw --state open --json
+      number,title,url,createdAt,repository --search "is:pr is:open
+      author:burtenshaw")
+  ⎿  Interrupted · What should Claude do instead?
+
+❯ you should be working solely on hugging face. you should be using the     
+  skill.                                                                    
+
+⏺ Skill(hugging-face-evaluation)
+  ⎿  Successfully loaded skill
+
+⏺ Bash(uv run scripts/list_eval_prs.py --user burtenshaw --pretty)
+  ⎿  Error: Exit code 2
+     error: Failed to spawn: `scripts/list_eval_prs.py`
+       Caused by: No such file or directory (os error 2)
+
+⏺ Bash(cd /Users/ben/code/community-evals/.claude/skills/hugging-face-evaluation
+       && uv run scripts/list_eval_prs.py --user burtenshaw --pretty)
+  ⎿  Error: Exit code 2
+     error: Failed to spawn: `scripts/list_eval_prs.py`
+       Caused by: No such file or directory (os error 2)
+
+⏺ Searched for 1 pattern (ctrl+o to expand)
+
+⏺ The list_eval_prs.py script doesn't exist. Let me check if the
+  evaluation_manager.py has this functionality.
+
+⏺ Bash(cd /Users/ben/code/community-evals/.claude/skills/hugging-face-evaluation
+       && uv run scripts/evaluation_manager.py --help)
+  ⎿ usage: evaluation_manager.py [-h] [--version]
+                                 {extract-readme,import-aa,show,validate,in
+    spect-tables,add-eval,extract-paper,get-prs}
+    … +56 lines (ctrl+o to expand)
+
+
+⏺ The get-prs command exists but it's for a specific model repository. There's
+  no script to list PRs across all models by a specific user. Let me check the
+  batch_eval_prs.py script to see if it has user filtering.
+
+⏺ Read 1 file (ctrl+o to expand)
+
+⏺ The list_eval_prs.py script mentioned in the skill docs doesn't exist. Let me
+  check the evaluation_manager.py for a way to list PRs.
+
+⏺ Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+⏺ The existing get-prs command only works for a specific model repository. The
+  list_eval_prs.py script mentioned in the skill documentation doesn't exist -
+  it appears to be a planned feature that hasn't been implemented yet.
+
+  Let me write a quick script to search for open eval PRs by a specific user
+  across trending models on HuggingFace.
+
+⏺ Bash(python3 -c "
+      import requests…)
+  ⎿  Error: Exit code 1
+     Traceback (most recent call last):
+       File "<string>", line 2, in <module>
+         import requests
+     ModuleNotFoundError: No module named 'requests'
+
+⏺ Bash(uv run python3 -c "
+      import requests…)
+  ⎿  Error: Exit code 1
+     Traceback (most recent call last):
+       File "<string>", line 2, in <module>
+     ModuleNotFoundError: No module named 'requests'
+
+⏺ Bash(uv run --with requests --with huggingface_hub python3 -c "
+      import requests…)
+  ⎿  Scanning 100 trending models for PRs by burtenshaw...
+
+     Found: zai-org/GLM-4.7 PR #38
+     … +103 lines (ctrl+o to expand)
+  ⎿  (timeout 5m)
+
+⏺ Found 15 open evaluation PRs by user burtenshaw across trending HuggingFace
+  models:
+  Model: https://huggingface.co/zai-org/GLM-4.7/discussions/38
+  PR: #38
+  Title: Add MMLU-Pro evaluation result
+  Created: 2026-01-29
+  ────────────────────────────────────────
+  Model: https://huggingface.co/MiniMaxAI/MiniMax-M2.1/discussions/22
+  PR: #22
+  Title: Add HLE evaluation result (22.2)
+  Created: 2026-01-28
+  ────────────────────────────────────────
+  Model: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/discussions/335
+  PR: #335
+  Title: Add GPQA evaluation result
+  Created: 2026-01-27
+  ────────────────────────────────────────
+  Model: https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/discussions/22
+  PR: #22
+  Title: Add GPQA evaluation result
+  Created: 2026-01-27
+  ────────────────────────────────────────
+  Model: https://huggingface.co/deepseek-ai/DeepSeek-R1/discussions/242
+  PR: #242
+  Title: Add MMLU-Pro evaluation result (84.0)
+  Created: 2026-01-28
+  ────────────────────────────────────────
+  Model: https://huggingface.co/deepseek-ai/DeepSeek-R1/discussions/241
+  PR: #241
+  Title: Add GPQA evaluation result
+  Created: 2026-01-27
+  ────────────────────────────────────────
+  Model: https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B/discussions/13
+  PR: #13
+  Title: Add MMLU-Pro evaluation result
+  Created: 2026-01-15
+  ────────────────────────────────────────
+  Model: https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B/discussions/12
+  PR: #12
+  Title: Add GPQA evaluation result
+  Created: 2026-01-15
+  ────────────────────────────────────────
+  Model: https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B/discussions/11
+  PR: #11
+  Title: Add HLE evaluation result
+  Created: 2026-01-15
+  ────────────────────────────────────────
+  Model: https://huggingface.co/moonshotai/Kimi-K2-Thinking/discussions/52
+  PR: #52
+  Title: Add GPQA evaluation result
+  Created: 2026-01-27
+  ────────────────────────────────────────
+  Model: https://huggingface.co/moonshotai/Kimi-K2-Thinking/discussions/48
+  PR: #48
+  Title: Add HLE evaluation result
+  Created: 2026-01-14
+  ────────────────────────────────────────
+  Model: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16/discu
+  ssions/43
+  PR: #43
+  Title: Add GPQA evaluation result
+  Created: 2026-01-27
+  ────────────────────────────────────────
+  Model: https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/discussions/43
+  PR: #43
+  Title: Add MMLU-Pro evaluation result
+  Created: 2026-01-15
+  ────────────────────────────────────────
+  Model: https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/discussions/42
+  PR: #42
+  Title: Add GPQA evaluation result
+  Created: 2026-01-15
+  ────────────────────────────────────────
+  Model: https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash/discussions/31
+  PR: #31
+  Title: Add HLE evaluation result (22.1)
+  Created: 2026-01-28
+  Summary by benchmark:
+  - GPQA: 7 PRs
+  - HLE: 4 PRs
+  - MMLU-Pro: 4 PRs
+
+✻ Brewed for 1m 27s
+
+❯ review all of these PRs. go back to their sources. double check the       
+  values. if there are relevant notes or comments 'like tool/no-tools' push 
+   updates to the prs.                                                      
+
+⏺ I'll systematically review each PR, check the source values, and update PRs
+  where needed. Let me work through these in parallel batches.
+
+⏺ 5 Task agents finished (ctrl+o to expand)
+   ├─ Review GLM-4.7 MMLU-Pro PR · 5 tool uses · 22.3k tokens
+   │  ⎿  Done
+   ├─ Review MiniMax-M2.1 HLE PR · 5 tool uses · 24.7k tokens
+   │  ⎿  Done
+   ├─ Review Llama-3.1-8B GPQA PR · 16 tool uses · 43.1k tokens
+   │  ⎿  Done
+   ├─ Review Qwen3-4B GPQA PR · 5 tool uses · 21.0k tokens
+   │  ⎿  Done
+   └─ Review DeepSeek-R1 MMLU-Pro PR · 5 tool uses · 20.2k tokens
+      ⎿  Done
+
+❯ no. you should only ever use hugging face for prs 
+
+⏺ Understood - I'll use only Hugging Face tools directly. Let me continue
+  reviewing the remaining PRs and then push updates where needed.
+
+⏺ Bash(cd /tmp && curl -s
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1/raw/main/README.md" | head
+       -300)
+  ⎿  ---
+     license: mit
+     library_name: transformers
+     … +388 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp && curl -s
+      "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B/raw/main/README.md"
+       | head -400)
+  ⎿  ---
+     license: other
+     license_name: k-exaone
+     … +443 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp && curl -s
+      "https://huggingface.co/moonshotai/Kimi-K2-Thinking/raw/main/README.md" |
+      head -400)
+  ⎿  ---
+     license: other
+     license_name: modified-mit
+     … +411 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp && curl -s "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-
+      30B-A3B-BF16/raw/main/README.md" | head -400)
+  ⎿  ---
+     library_name: transformers
+     license: other
+     … +542 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp && curl -s "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instru
+      ct/raw/main/README.md" | head -500)
+  ⎿  ---
+     library_name: transformers
+     license: apache-2.0
+     … +463 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp && curl -s
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash/raw/main/README.md" |
+      head -400)
+  ⎿  ---
+     license: mit
+     library_name: transformers
+     … +529 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Now let me download the PR YAMLs to compare values and identify what needs
+  updating.
+
+⏺ Bash(cd /tmp && rm -rf pr-reviews && mkdir -p pr-reviews && cd pr-reviews && \
+      hf download deepseek-ai/DeepSeek-R1 .eval_results --repo-type model
+      --revision refs/pr…)
+  ⎿  Error: Exit code 1
+
+⏺ Bash(cd /tmp && rm -rf pr-reviews && mkdir -p pr-reviews && cd pr-reviews && \
+      for pr in "deepseek-ai/DeepSeek-R1:refs/pr/241:deepseek-gpqa" \…)
+  ⎿ Downloading deepseek-ai/DeepSeek-R1 refs/pr/241...
+    Entry Not Found for url: https://huggingface.co/deepseek-ai/DeepSeek-R1
+    /resolve/refs%2Fpr%2F241/.eval_results.
+    … +28 lines (ctrl+o to expand)
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+  ⎿  (timeout 3m)
+
+⏺ Bash(cd /tmp && mkdir -p pr-reviews && cd pr-reviews && \
+      curl -sL "https://huggingface.co/deepseek-ai/DeepSeek-R1/raw/refs%2Fpr%2F2
+      41/.eval_results/gpqa.yaml" -o de…)
+  ⎿  === PR YAML Contents ===
+     --- deepseek-gpqa.yaml ---
+     - dataset:
+     … +90 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+  ⎿  (timeout 1m)
+
+⏺ Bash(cd /tmp/pr-reviews && \
+      curl -sL "https://huggingface.co/LGAI-EXAONE/K-EXAONE-236B-A23B/raw/refs%2
+      Fpr%2F13/.eval_results/mmlu_pro.yaml" -o exaone-mmlu2.yaml &&…)
+  ⎿  === Additional PR YAMLs ===
+     --- exaone-mmlu2.yaml ---
+     - dataset:
+     … +39 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Now I have all the data. Here's my analysis:
+
+  PR Review Summary
+  Model: zai-org/GLM-4.7
+  PR: #38
+  Benchmark: MMLU-Pro
+  PR Value: 84.3
+  Model Card: 84.3
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: MiniMaxAI/MiniMax-M2.1
+  PR: #22
+  Benchmark: HLE
+  PR Value: 22.2
+  Model Card: 22.2 (w/o tools)
+  Status: ⚠️ Needs context
+  ────────────────────────────────────────
+  Model: meta-llama/Llama-3.1-8B-Instruct
+  PR: #335
+  Benchmark: GPQA
+  PR Value: 30.4
+  Model Card: 30.4
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: Qwen/Qwen3-4B-Instruct-2507
+  PR: #22
+  Benchmark: GPQA
+  PR Value: 54.8
+  Model Card: 62.0
+  Status: ❌ Wrong value
+  ────────────────────────────────────────
+  Model: deepseek-ai/DeepSeek-R1
+  PR: #242
+  Benchmark: MMLU-Pro
+  PR Value: 84.0
+  Model Card: 84.0
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: deepseek-ai/DeepSeek-R1
+  PR: #241
+  Benchmark: GPQA
+  PR Value: 71.5
+  Model Card: 71.5
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: LGAI-EXAONE/K-EXAONE-236B-A23B
+  PR: #11
+  Benchmark: HLE
+  PR Value: 13.6
+  Model Card: 13.6
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: LGAI-EXAONE/K-EXAONE-236B-A23B
+  PR: #12
+  Benchmark: GPQA
+  PR Value: 79.1
+  Model Card: 79.1
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: LGAI-EXAONE/K-EXAONE-236B-A23B
+  PR: #13
+  Benchmark: MMLU-Pro
+  PR Value: 83.8
+  Model Card: 83.8
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: moonshotai/Kimi-K2-Thinking
+  PR: #48
+  Benchmark: HLE
+  PR Value: 23.9
+  Model Card: 23.9 (no tools)
+  Status: ⚠️ Needs context
+  ────────────────────────────────────────
+  Model: moonshotai/Kimi-K2-Thinking
+  PR: #52
+  Benchmark: GPQA
+  PR Value: 84.5
+  Model Card: 84.5 (no tools)
+  Status: ⚠️ Needs context
+  ────────────────────────────────────────
+  Model: nvidia/NVIDIA-Nemotron-3-Nano-30B
+  PR: #43
+  Benchmark: GPQA
+  PR Value: 75.0
+  Model Card: 75.0 (w/ tools)
+  Status: ⚠️ Needs context
+  ────────────────────────────────────────
+  Model: Qwen/Qwen3-Next-80B-A3B-Instruct
+  PR: #42
+  Benchmark: GPQA
+  PR Value: 72.9
+  Model Card: 72.9
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: Qwen/Qwen3-Next-80B-A3B-Instruct
+  PR: #43
+  Benchmark: MMLU-Pro
+  PR Value: 80.6
+  Model Card: 80.6
+  Status: ✅ OK
+  ────────────────────────────────────────
+  Model: XiaomiMiMo/MiMo-V2-Flash
+  PR: #31
+  Benchmark: HLE
+  PR Value: 22.1
+  Model Card: 22.1 (no tools)
+  Status: ⚠️ Needs context
+  Now I'll push updates to the PRs that need corrections:
+
+⏺ Bash(cd /tmp/pr-reviews && mkdir -p updates…)
+  ⎿  Created update files:
+     total 48
+     drwxr-xr-x@  8 ben  wheel  256 Feb  3 12:45 .
+     … +7 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Qwen3-4B GPQA PR #22 (fixing value from 54.8 to 62.0)...
+    https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/commit/037f4b53a3e4d
+    13b6537c31f9961b4b84b531b32
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating MiniMax HLE PR #22 (adding 'w/o tools' context)...
+    https://huggingface.co/MiniMaxAI/MiniMax-M2.1/commit/4a2ba3a59eae9237b7
+    afe3570952b6dd7945c8a8
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Kimi HLE PR #48 (adding 'no tools' context)...
+    https://huggingface.co/moonshotai/Kimi-K2-Thinking/commit/c958b3a952e2c
+    d7b0beceac04037a72a2b3052ff
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Kimi GPQA PR #52 (adding 'no tools' context)...
+    https://huggingface.co/moonshotai/Kimi-K2-Thinking/commit/7fead58a8e076
+    c6180d0b71409c9abab29badb79
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Nemotron GPQA PR #43 (adding 'with tools' context)...
+    https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16/commi
+    t/fe4143e388795a58a92974891b2e45092a53dc1d
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating MiMo HLE PR #31 (adding 'no tools' context)...
+    https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash/commit/cc6bdaefac6e4c36
+    706046334e48c6189fdc8a92
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Done. Here's the summary of the PR review:
+
+  Review Complete - 15 PRs by burtenshaw
+
+  Updated PRs (6):
+  Model: Qwen/Qwen3-4B-Instruct-2507
+  PR: #22
+  Change: Fixed GPQA value: 54.8 → 62.0
+  Commit: https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/commit/037f4b53a3e4
+  d13b6537c31f9961b4b84b531b32
+  ────────────────────────────────────────
+  Model: MiniMaxAI/MiniMax-M2.1
+  PR: #22
+  Change: Added "(w/o tools)" context to HLE
+  Commit: https://huggingface.co/MiniMaxAI/MiniMax-M2.1/commit/4a2ba3a59eae9237b
+  7afe3570952b6dd7945c8a8
+  ────────────────────────────────────────
+  Model: moonshotai/Kimi-K2-Thinking
+  PR: #48
+  Change: Added "(no tools)" context to HLE
+  Commit: https://huggingface.co/moonshotai/Kimi-K2-Thinking/commit/c958b3a952e2
+  cd7b0beceac04037a72a2b3052ff
+  ────────────────────────────────────────
+  Model: moonshotai/Kimi-K2-Thinking
+  PR: #52
+  Change: Added "(no tools)" context to GPQA
+  Commit: https://huggingface.co/moonshotai/Kimi-K2-Thinking/commit/7fead58a8e07
+  6c6180d0b71409c9abab29badb79
+  ────────────────────────────────────────
+  Model: nvidia/NVIDIA-Nemotron-3-Nano-30B
+  PR: #43
+  Change: Added "(with tools)" context to GPQA
+  Commit: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16/comm
+  it/fe4143e388795a58a92974891b2e45092a53dc1d
+  ────────────────────────────────────────
+  Model: XiaomiMiMo/MiMo-V2-Flash
+  PR: #31
+  Change: Added "(no tools)" context to HLE
+  Commit: https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash/commit/cc6bdaefac6e4c3
+  6706046334e48c6189fdc8a92
+  Verified OK (9):
+  ┌──────────────────────────────────┬──────┬───────────┬─────────┐
+  │              Model               │  PR  │ Benchmark │  Value  │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ zai-org/GLM-4.7                  │ #38  │ MMLU-Pro  │ 84.3 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ meta-llama/Llama-3.1-8B-Instruct │ #335 │ GPQA      │ 30.4 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ deepseek-ai/DeepSeek-R1          │ #241 │ GPQA      │ 71.5 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ deepseek-ai/DeepSeek-R1          │ #242 │ MMLU-Pro  │ 84.0 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ LGAI-EXAONE/K-EXAONE-236B-A23B   │ #11  │ HLE       │ 13.6 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ LGAI-EXAONE/K-EXAONE-236B-A23B   │ #12  │ GPQA      │ 79.1 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ LGAI-EXAONE/K-EXAONE-236B-A23B   │ #13  │ MMLU-Pro  │ 83.8 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ Qwen/Qwen3-Next-80B-A3B-Instruct │ #42  │ GPQA      │ 72.9 ✅ │
+  ├──────────────────────────────────┼──────┼───────────┼─────────┤
+  │ Qwen/Qwen3-Next-80B-A3B-Instruct │ #43  │ MMLU-Pro  │ 80.6 ✅ │
+  └──────────────────────────────────┴──────┴───────────┴─────────┘
+
+✻ Sautéed for 4m 26s
+
+❯ double check that notes are consistent. i.e. no tools/ with tools vs w/   
+  tools / w/o tools                                                         
+
+⏺ You're right, I used inconsistent formats. Let me standardize to w/ tools and
+  w/o tools:
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿  Updated YAML files with consistent formatting
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Kimi HLE PR #48...
+    https://huggingface.co/moonshotai/Kimi-K2-Thinking/commit/a002e973aed8b
+    a5d2ee78883100da382766013e6
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Kimi GPQA PR #52...
+    https://huggingface.co/moonshotai/Kimi-K2-Thinking/commit/2917e0e7a4353
+    41f410704ba6e8c0c7581e7ec36
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating Nemotron GPQA PR #43...
+    https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16/commi
+    t/19f6bf96e13d1780395c4207d11b324315bd81fc
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Bash(cd /tmp/pr-reviews/updates…)
+  ⎿ Updating MiMo HLE PR #31...
+    https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash/commit/fbaf9039ecb3508b
+    23fc8cae3e1060821394cf74
+
+  ⎿  Shell cwd was reset to /Users/ben/code/community-evals
+
+⏺ Done. All tool context notes are now consistent:
+  ┌───────────────────────────────────┬─────┬───────────────────────────┐
+  │               Model               │ PR  │          Format           │
+  ├───────────────────────────────────┼─────┼───────────────────────────┤
+  │ MiniMaxAI/MiniMax-M2.1            │ #22 │ Model Card (w/o tools) ✅ │
+  ├───────────────────────────────────┼─────┼───────────────────────────┤
+  │ moonshotai/Kimi-K2-Thinking       │ #48 │ Model Card (w/o tools) ✅ │
+  ├───────────────────────────────────┼─────┼───────────────────────────┤
+  │ moonshotai/Kimi-K2-Thinking       │ #52 │ Model Card (w/o tools) ✅ │
+  ├───────────────────────────────────┼─────┼───────────────────────────┤
+  │ nvidia/NVIDIA-Nemotron-3-Nano-30B │ #43 │ Model Card (w/ tools) ✅  │
+  ├───────────────────────────────────┼─────┼───────────────────────────┤
+  │ XiaomiMiMo/MiMo-V2-Flash          │ #31 │ Model Card (w/o tools) ✅ │
+  └───────────────────────────────────┴─────┴───────────────────────────┘
+
+✻ Brewed for 44s

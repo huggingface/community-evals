@@ -1,0 +1,209 @@
+{
+  "benchmark": "HLE",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "downloads",
+  "limit": 50,
+  "dry_run": true,
+  "created": "2026-01-28T08:54:34.210295+00:00",
+  "results": [
+    {
+      "repo_id": "distilbert/distilgpt2",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/distilbert/distilgpt2",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:35.025305+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:35.449996+00:00"
+    },
+    {
+      "repo_id": "trl-internal-testing/tiny-Qwen2ForCausalLM-2.5",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/trl-internal-testing/tiny-Qwen2ForCausalLM-2.5",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:36.041093+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-32B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-32B",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:36.385453+00:00"
+    },
+    {
+      "repo_id": "openai-community/gpt2-large",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/openai-community/gpt2-large",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:36.743728+00:00"
+    },
+    {
+      "repo_id": "meta-llama/Llama-3.2-3B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:37.136582+00:00"
+    },
+    {
+      "repo_id": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:37.478517+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:37.873835+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2-1.5B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2-1.5B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:38.204907+00:00"
+    },
+    {
+      "repo_id": "microsoft/Phi-3-mini-4k-instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:38.548620+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-0.5B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-0.5B",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:39.069722+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:39.603271+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-32B-FP8",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-32B-FP8",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:39.949346+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-14B-AWQ",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-14B-AWQ",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:40.383051+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-7B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-7B",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:40.728140+00:00"
+    },
+    {
+      "repo_id": "llm-jp/llm-jp-3-3.7b-instruct",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/llm-jp/llm-jp-3-3.7b-instruct",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:41.109359+00:00"
+    },
+    {
+      "repo_id": "hmellor/tiny-random-LlamaForCausalLM",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/hmellor/tiny-random-LlamaForCausalLM",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:41.589762+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-14B",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-14B",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:41.927309+00:00"
+    },
+    {
+      "repo_id": "kaitchup/Phi-3-mini-4k-instruct-gptq-4bit",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/kaitchup/Phi-3-mini-4k-instruct-gptq-4bit",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:42.506910+00:00"
+    },
+    {
+      "repo_id": "h2oai/h2ovl-mississippi-800m",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/h2oai/h2ovl-mississippi-800m",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:42.844064+00:00"
+    },
+    {
+      "repo_id": "h2oai/h2ovl-mississippi-2b",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/h2oai/h2ovl-mississippi-2b",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:43.260648+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen2.5-32B-Instruct-AWQ",
+      "benchmark": "HLE",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct-AWQ",
+      "status": "not_found",
+      "timestamp": "2026-01-28T08:54:43.616116+00:00"
+    }
+  ]
+}

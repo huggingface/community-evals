@@ -116,6 +116,18 @@ def parse_args() -> argparse.Namespace:
         default="table",
         help="Output format.",
     )
+    parser.add_argument(
+        "--dataset-id",
+        metavar="REPO_ID",
+        help="Hub dataset repo to push results to "
+             "(e.g. 'burtenshaw/community-evals-monitoring'). "
+             "Pushes audit_results/YYYY-MM-DD.json and audit_results/latest.json.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print what would be pushed without actually uploading to the Hub.",
+    )
     return parser.parse_args()
 
 
@@ -426,6 +438,35 @@ def render_table(args: argparse.Namespace, results: list[ModelCoverage], fetched
     return "\n".join(lines)
 
 
+def push_audit_results_to_hub(
+    dataset_id: str,
+    payload: dict[str, Any],
+    hf_token: str | None,
+    dry_run: bool,
+) -> None:
+    """Push timestamped + latest audit results JSON to a Hub dataset repo."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    content = json.dumps(payload, indent=2, ensure_ascii=False).encode()
+
+    paths = [f"audit_results/{today}.json", "audit_results/latest.json"]
+
+    if dry_run:
+        print(f"[dry-run] Would push to {dataset_id}: {', '.join(paths)}", file=sys.stderr)
+        return
+
+    api = HfApi()
+    for path in paths:
+        api.upload_file(
+            path_or_fileobj=content,
+            path_in_repo=path,
+            repo_id=dataset_id,
+            repo_type="dataset",
+            token=hf_token,
+            commit_message=f"add audit results {today}",
+        )
+    print(f"Pushed results to {dataset_id}: {', '.join(paths)}", file=sys.stderr)
+
+
 def main() -> int:
     args = parse_args()
     load_dotenv()
@@ -447,6 +488,11 @@ def main() -> int:
         print(render_table(args, results, len(fetched_models), tablefmt="github"))
     else:
         print(render_table(args, results, len(fetched_models), tablefmt="simple"))
+
+    # Push results to Hub dataset if --dataset-id provided
+    if args.dataset_id:
+        payload = build_json_payload(args, results, len(fetched_models))
+        push_audit_results_to_hub(args.dataset_id, payload, hf_token, args.dry_run)
 
     return 0
 

@@ -1,0 +1,137 @@
+{
+  "benchmark": "GPQA",
+  "source": "model_card",
+  "source_url": "https://huggingface.co/",
+  "sort": "trending",
+  "limit": 50,
+  "dry_run": true,
+  "created": "2026-02-03T12:57:06.883066+00:00",
+  "results": [
+    {
+      "repo_id": "stepfun-ai/Step-3.5-Flash",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:08.077788+00:00"
+    },
+    {
+      "repo_id": "meituan-longcat/LongCat-Flash-Lite",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/meituan-longcat/LongCat-Flash-Lite",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:08.886427+00:00"
+    },
+    {
+      "repo_id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+      "benchmark": "GPQA",
+      "value": 73.0,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:09.878530+00:00"
+    },
+    {
+      "repo_id": "stepfun-ai/Step-3.5-Flash-FP8",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/stepfun-ai/Step-3.5-Flash-FP8",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:10.588209+00:00"
+    },
+    {
+      "repo_id": "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:11.301992+00:00"
+    },
+    {
+      "repo_id": "janhq/Jan-v3-4B-base-instruct-gguf",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/janhq/Jan-v3-4B-base-instruct-gguf",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:12.071314+00:00"
+    },
+    {
+      "repo_id": "microsoft/bitnet-b1.58-2B-4T",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/microsoft/bitnet-b1.58-2B-4T",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:12.318986+00:00"
+    },
+    {
+      "repo_id": "mlx-community/Kimi-K2.5",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/mlx-community/Kimi-K2.5",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:13.114634+00:00"
+    },
+    {
+      "repo_id": "cerebras/MiniMax-M2.1-REAP-139B-A10B",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/cerebras/MiniMax-M2.1-REAP-139B-A10B",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:13.803703+00:00"
+    },
+    {
+      "repo_id": "Qwen/Qwen3-8B-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-8B-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:14.584321+00:00"
+    },
+    {
+      "repo_id": "moonshotai/Kimi-K2-Thinking",
+      "benchmark": "GPQA",
+      "value": 84.5,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Thinking",
+      "status": "dry_run",
+      "timestamp": "2026-02-03T12:57:15.060105+00:00"
+    },
+    {
+      "repo_id": "ruv/ruvltra-claude-code",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/ruv/ruvltra-claude-code",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:15.808236+00:00"
+    },
+    {
+      "repo_id": "unsloth/gpt-oss-20b-GGUF",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/unsloth/gpt-oss-20b-GGUF",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:16.524854+00:00"
+    },
+    {
+      "repo_id": "TeichAI/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill",
+      "benchmark": "GPQA",
+      "value": null,
+      "source": "model_card",
+      "source_url": "https://huggingface.co/TeichAI/GLM-4.7-Flash-Claude-Opus-4.5-High-Reasoning-Distill",
+      "status": "not_found",
+      "timestamp": "2026-02-03T12:57:17.242531+00:00"
+    }
+  ]
+}
