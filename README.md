@@ -116,7 +116,7 @@ This will output the available tables and their numbers which you can then use t
 
 ## Agentic Usage
 
-This repository includes a Claude Code skill at `.claude/skills/hugging-face-evaluation/` for automated evaluation management.
+This repository includes a Claude Code skill at `.claude/skills/community-evals/` for automated evaluation management.
 
 ### Ideal Prompts
 
@@ -215,7 +215,7 @@ To add a discovered benchmark to the workflow:
 1. Verify it has a leaderboard on its Hub page
 2. Add it to `BENCHMARK_TRACKER.md`
 3. Add the dataset ID to `BENCHMARK_DATASETS` in `scripts/poll_new_evals.py`
-4. Add a name → ID mapping in `.claude/skills/hugging-face-evaluation/examples/metric_mapping.json`
+4. Add a name → ID mapping in `.claude/skills/community-evals/examples/metric_mapping.json`
 
 ---
 

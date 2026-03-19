@@ -245,7 +245,7 @@ def build_report(
         "1. Visit the candidate's Hub page and verify it supports `.eval_results/` YAML.",
         "2. Add it to `BENCHMARK_TRACKER.md` under **Prospective Benchmarks**.",
         "3. Once confirmed, add the dataset ID to `BENCHMARK_DATASETS` in `scripts/poll_new_evals.py`.",
-        "4. Add a name → ID entry in `.claude/skills/hugging-face-evaluation/examples/metric_mapping.json`.",
+        "4. Add a name → ID entry in `.claude/skills/community-evals/examples/metric_mapping.json`.",
         "",
         "_Run with `--output-json` to get structured data for automation._",
     ]
