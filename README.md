@@ -6,7 +6,7 @@ This project adds structured evaluation results to model repositories using the 
 
 - Benchmark Leaderboards: Results appear on both model pages and benchmark dataset leaderboards
 - Community Contributions: Anyone can submit evaluation results via Pull Request
-- Verified Results: Pier reviewed and verified evaluation results
+- Verified Results: Peer reviewed and verified evaluation results
 
 ![Model Evaluation Results](https://huggingface.co/huggingface/documentation-images/resolve/main/evaluation-results/eval-results-previw.png)
 
