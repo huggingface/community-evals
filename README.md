@@ -178,7 +178,7 @@ Results are stored as YAML files in `.eval_results/`:
 # .eval_results/hle.yaml
 - dataset:
     id: cais/hle              # Hub Benchmark dataset ID
-    task_id: default          # Optional: specific task/leaderboard
+    task_id: default          # ID of the Task, as defined in the dataset's eval.yaml
   value: 22.2                 # Metric value
   date: "2026-01-14"          # ISO-8601 date
   source:                     # Attribution
