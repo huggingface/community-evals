@@ -1,6 +1,6 @@
 ---
-name: hugging-face-evaluation
-description: Add evaluation results to Hugging Face model repositories using the .eval_results/ format. Uses HF CLI for PR management and manual YAML creation.
+name: community-evals
+description: Add and publish community evaluation results to Hugging Face model repositories using the .eval_results/ format. Focuses on PR workflows, benchmark mapping, and leaderboard-friendly result publishing.
 ---
 
 # Overview
