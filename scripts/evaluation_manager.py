@@ -122,6 +122,7 @@ def load_benchmark_mapping() -> Dict[str, Any]:
             "AIME": {"dataset_id": "OpenEvals/aime_24", "task_id": "default", "aliases": ["aime"]},
             "MMLU": {"dataset_id": "cais/mmlu", "task_id": "default", "aliases": ["mmlu"]},
             "GSM8K": {"dataset_id": "openai/gsm8k", "task_id": "default", "aliases": ["gsm8k"]},
+            "BJJ-VQA": {"dataset_id": "couto/bjj-vqa", "task_id": "bjj_vqa", "aliases": ["bjj-vqa", "bjjvqa"]},
         }
 
     with open(mapping_file) as f:
