@@ -18,6 +18,7 @@ This project adds structured evaluation results to model repositories using the 
 | GPQA | [Idavidrein/gpqa](https://huggingface.co/datasets/Idavidrein/gpqa) |
 | MMLU-Pro | [TIGER-Lab/MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro) |
 | GSM8K | [openai/gsm8k](https://huggingface.co/datasets/openai/gsm8k) |
+| BJJ-VQA | [couto/bjj-vqa](https://huggingface.co/datasets/couto/bjj-vqa) |
 
 ## Quick Start
 

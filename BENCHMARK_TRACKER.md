@@ -27,6 +27,7 @@ Last updated: 2026-03-16
 
 | Benchmark | Source | Status | Contact | Notes |
 |-----------|--------|--------|---------|-------|
+| BJJ-VQA | [couto/bjj-vqa](https://huggingface.co/datasets/couto/bjj-vqa) | 🆕 PR submitted | @matheusccouto | VQA benchmark for BJJ reasoning. eval.yaml live, awaiting allow-list |
 | TaxCalcBench | [x.com post](https://x.com/michaelrbock/status/2029931536636858694) | 📧 In touch | Niels → author DM | Cool benchmark: can agent calculate your taxes? Get data on hub + eval open models |
 | EyeBench v3 | [x.com post](https://x.com/adonis_singh/status/2031761832390672487) | 📧 Reached out | Niels | v2 saturated, v3 just launched. Want scripts + data on hub |
 | PostTrainBench | [posttrainbench.com](https://posttrainbench.com/) | 👀 Watching | — | CLI agent improves post-training. Interesting but niche |
